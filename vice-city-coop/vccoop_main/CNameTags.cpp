@@ -11,7 +11,7 @@ void CNameTags::Draw()
 	for (auto it = gNetwork->networkEntities.begin(); it != gNetwork->networkEntities.end(); ++it)
 	{
 		CClientEntity * networkEntity = (*it);
-		if (networkEntity->type == VCOOP_PLAYER)
+		if (networkEntity->type == SACOOP_PLAYER)
 		{
 			CClientPlayer * player = (CClientPlayer*)networkEntity;
 			CPed * ped = player->ped;

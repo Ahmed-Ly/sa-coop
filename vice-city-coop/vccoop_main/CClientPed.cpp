@@ -4,7 +4,7 @@ CClientPed::CClientPed(int nID, int modelID)
 {
 	this->ped = NULL;
 
-	this->type = VCOOP_PED;
+	this->type = SACOOP_PED;
 
 	CVector pos =LocalPlayer()->GetPosition();
 

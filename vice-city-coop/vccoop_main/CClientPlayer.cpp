@@ -31,7 +31,7 @@ CClientPlayer::CClientPlayer(int nID, int gID)
 	gGame->remotePlayerPeds[gID] = this->ped;
 	gGame->remotePlayers++;
 
-	this->type = VCOOP_PLAYER;
+	this->type = SACOOP_PLAYER;
 }
 
 void CClientPlayer::StreamIn()

@@ -2,7 +2,7 @@
 
 CClientVehicle::CClientVehicle(int nID, int modelID, CVector position, int PrimaryColor, int SecondaryColor)
 {
-	this->type						= VCOOP_VEHICLE;
+	this->type						= SACOOP_VEHICLE;
 	this->model						= modelID;
 	this->streamed					= true;
 	this->networkID					= nID;

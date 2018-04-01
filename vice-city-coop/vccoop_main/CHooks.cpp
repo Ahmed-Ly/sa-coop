@@ -120,7 +120,7 @@ int __fastcall CPed__SetDead_Hook(CPed * This, DWORD _EDX)
 		deathData dData;
 //		dData.killer = gNetwork->GetNetworkIDFromEntity(This->m_pLastDamEntity);
 //		dData.weapon = This->m_nLastDamWep;
-		librg_message_send_all(&gNetwork->ctx, VCOOP_PED_IS_DEAD, &dData, sizeof(deathData));
+		librg_message_send_all(&gNetwork->ctx, SACOOP_PED_IS_DEAD, &dData, sizeof(deathData));
 	}
 	return original_CPed__SetDead(This);
 }
@@ -137,7 +137,7 @@ void Hooked_SpawnPedAfterDeath()
 	gLog->Log("game tried to spawn me\n");
 	CPed * ped = LocalPlayer();
 	ped->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
-	librg_message_send_all(&gNetwork->ctx, VCOOP_RESPAWN_AFTER_DEATH, NULL, 0);
+	librg_message_send_all(&gNetwork->ctx, SACOOP_RESPAWN_AFTER_DEATH, NULL, 0);
 }
 
 void Hook_CRunningScript__Process()
@@ -273,7 +273,7 @@ int __fastcall CWeapon__DoBulletImpact_Hook(CWeapon*This, DWORD _EDX, CEntity* s
 		bsData.colPoint = *colpoint;
 		bsData.ahead = ahead;
 
-		librg_message_send_all(&gNetwork->ctx, VCOOP_BULLET_SYNC, &bsData, sizeof(bulletSyncData));
+		librg_message_send_all(&gNetwork->ctx, SACOOP_BULLET_SYNC, &bsData, sizeof(bulletSyncData));
 	}
 	return original_CWeapon__DoBulletImpact(This, source, target, start, end, colpoint, ahead);
 }

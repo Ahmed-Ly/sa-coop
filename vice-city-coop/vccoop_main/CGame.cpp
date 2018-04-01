@@ -511,7 +511,7 @@ void CGame::InitPreGamePatches()
 void CGame::EnableMouseInput()
 {
 	//Enable CPad:UpdateMouse
-	MemCpy((void*)0x53F3C0, "\x53", 1);
+	//MemCpy((void*)0x53F3C0, "\x53", 1);
 	//CControllerConfigManager::AffectPadFromKeyBoard restore
 	MemCpy((void*)0x541DF5, "\xE8\x46\xF3\xFE\xFF", 5);
 	//CControllerConfigManager::AffectPadFromMouse restore
@@ -522,7 +522,7 @@ void CGame::EnableMouseInput()
 void CGame::DisableMouseInput()
 {
 	//Disable CPad:UpdateMouse
-	MakeRet(0x53F3C0);
+	//MakeRet(0x53F3C0);
 	//CControllerConfigManager::AffectPadFromKeyBoard nop
 	MakeNop(0x541DF5, 5);
 	//CControllerConfigManager::AffectPadFromMouse nop

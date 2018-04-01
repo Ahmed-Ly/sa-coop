@@ -60,7 +60,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='zDebug GTAVC|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -133,7 +133,7 @@
     <IntDir>$(PLUGIN_SDK_DIR)\output\obj\examples\$(ProjectName)\Debug\</IntDir>
     <TargetName>DXFont.SA_d</TargetName>
     <TargetExt>.asi</TargetExt>
-    <IncludePath>$(IncludePath);$(DIRECTX9_SDK_DIR)\Include;$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_sa;$(ProjectDir)\vendor\lua\include;$(ProjectDir)\vendor\discord-rpc;$(ProjectDir)\vendor\detours;D:\_dev\plugin-sdk\shared</IncludePath>
+    <IncludePath>$(IncludePath);$(DIRECTX9_SDK_DIR)\Include;$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_sa;$(ProjectDir)\vendor\lua\include;$(ProjectDir)\vendor\discord-rpc;$(ProjectDir)\vendor\detours;$(PLUGIN_SDK_DIR)\shared\</IncludePath>
     <LibraryPath>$(LibraryPath);$(DIRECTX9_SDK_DIR)\Lib\x86;$(LibraryPath);$(ProjectDir)\vendor\rw;$(ProjectDir)\vendor\discord-rpc;$(SolutionDir)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='zDebug GTAVC|Win32'">

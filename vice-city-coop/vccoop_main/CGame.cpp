@@ -554,8 +554,8 @@ CVehicle * CGame::CreateVehicle(int modelIndex, CVector position)
 	}
 	if (vehicle)
 	{
-		vehicle->m_nDoorLock		= 1;
-		vehicle->m_nStatus		= (unsigned char)0x4;
+		vehicle->m_nDoorLock		    = 1;
+		vehicle->m_nStatus		        = 0x4;
 		vehicle->m_placement.m_vPosn	= position;
 		
 		// invalid position set.. fuck that.. reset it!

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{56EB95D1-428D-C0A7-2B48-D4FB178947F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\tools">
+      <UniqueIdentifier>{5c2b7b67-e8f6-4f52-ad10-1eb9504b933d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\game">
+      <UniqueIdentifier>{34158d53-bd77-497b-9256-6b1648cd5318}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\rendering">
+      <UniqueIdentifier>{1e791aee-c0ab-421a-9726-5f88d8c2b4a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{892d7aa6-8b1a-4e91-8b22-85b25b8e9d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\imgui">
+      <UniqueIdentifier>{a129ce68-c1a9-492e-8b10-37ea973cf2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\librg">
+      <UniqueIdentifier>{318d37ef-26bd-4b7b-8f56-e3d2342fa823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\network">
+      <UniqueIdentifier>{0aa3e63f-3bbb-49e0-93e1-214e08de0fc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\tools\CLogger">
+      <UniqueIdentifier>{6a636150-7b15-4778-9f00-a6e132be398c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\tools\CConfiguration">
+      <UniqueIdentifier>{26feaac1-9f9e-4e9f-b943-859c0b90ef82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\tools\Hook Library">
+      <UniqueIdentifier>{7fb7d40f-569f-49dc-92e6-5b5719c0b155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\misc">
+      <UniqueIdentifier>{449492df-1bf5-4282-b6e6-c0fe324f43b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\scripting">
+      <UniqueIdentifier>{a851cbee-fe4c-4afe-9746-47b921ca74c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\lua">
+      <UniqueIdentifier>{7628081b-ebec-4711-a099-d8931df203fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main">
+      <UniqueIdentifier>{b0963210-2b99-45e7-86e4-502c745110cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\scripting\lua">
+      <UniqueIdentifier>{9fdd0ceb-74a2-411f-9927-327d32d9c620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\tools\CRichPresence">
+      <UniqueIdentifier>{e02f5db0-03d5-41b8-b4c4-5f939d012fd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\discord-rich-presence">
+      <UniqueIdentifier>{3918bd69-8a75-44fc-bb5a-eb4075eaf62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\misc\CModelIDs">
+      <UniqueIdentifier>{e09ed312-0a85-49c7-8f1a-d8a82e1329a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\misc\CCustomData">
+      <UniqueIdentifier>{59de24c3-d68e-45c1-bcbd-21b216aee584}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGame.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="CRender.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="librg\enet.h">
+      <Filter>vendor\librg</Filter>
+    </ClInclude>
+    <ClInclude Include="librg\librg.h">
+      <Filter>vendor\librg</Filter>
+    </ClInclude>
+    <ClInclude Include="librg\zpl.h">
+      <Filter>vendor\librg</Filter>
+    </ClInclude>
+    <ClInclude Include="librg\zpl_math.h">
+      <Filter>vendor\librg</Filter>
+    </ClInclude>
+    <ClInclude Include="CRenderTemplate.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CNameTags.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CDebugScreen.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CImGui.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CChat.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientNetwork.h">
+      <Filter>Source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientPlayer.h">
+      <Filter>Source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imconfig.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui_impl_dx9.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui_internal.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\stb_rect_pack.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\stb_textedit.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\stb_truetype.h">
+      <Filter>vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogger.h">
+      <Filter>Source\tools\CLogger</Filter>
+    </ClInclude>
+    <ClInclude Include="hooklibrary.h">
+      <Filter>Source\tools\Hook Library</Filter>
+    </ClInclude>
+    <ClInclude Include="CConfiguration.h">
+      <Filter>Source\tools\CConfiguration</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoTextureArray.h">
+      <Filter>Source\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\lua\include\lauxlib.h">
+      <Filter>vendor\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\lua\include\lua.h">
+      <Filter>vendor\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\lua\include\lua.hpp">
+      <Filter>vendor\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\lua\include\luaconf.h">
+      <Filter>vendor\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\lua\include\lualib.h">
+      <Filter>vendor\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientVehicle.h">
+      <Filter>Source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientPed.h">
+      <Filter>Source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Source\main</Filter>
+    </ClInclude>
+    <ClInclude Include="CCore.h">
+      <Filter>Source\main</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraStuff.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="CHooks.h">
+      <Filter>Source\game</Filter>
+    </ClInclude>
+    <ClInclude Include="CDebugEngine.h">
+      <Filter>Source\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CLua.h">
+      <Filter>Source\scripting\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="CRichPresence.h">
+      <Filter>Source\tools\CRichPresence</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\discord-rich-presence\discord-rpc.h">
+      <Filter>vendor\discord-rich-presence</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientEntity.h">
+      <Filter>Source\network</Filter>
+    </ClInclude>
+    <ClInclude Include="CModelIDs.h">
+      <Filter>Source\misc\CModelIDs</Filter>
+    </ClInclude>
+    <ClInclude Include="CCustomData.h">
+      <Filter>Source\misc\CCustomData</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CGame.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="CRender.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderTemplate.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CNameTags.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CDebugScreen.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CImGui.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CChat.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CClientNetwork.cpp">
+      <Filter>Source\network</Filter>
+    </ClCompile>
+    <ClCompile Include="CClientPlayer.cpp">
+      <Filter>Source\network</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_impl_dx9.cpp">
+      <Filter>vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogger.cpp">
+      <Filter>Source\tools\CLogger</Filter>
+    </ClCompile>
+    <ClCompile Include="CConfiguration.cpp">
+      <Filter>Source\tools\CConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="CClientVehicle.cpp">
+      <Filter>Source\network</Filter>
+    </ClCompile>
+    <ClCompile Include="CClientPed.cpp">
+      <Filter>Source\network</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source\main</Filter>
+    </ClCompile>
+    <ClCompile Include="CCore.cpp">
+      <Filter>Source\main</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraStuff.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="CHooks.cpp">
+      <Filter>Source\game</Filter>
+    </ClCompile>
+    <ClCompile Include="CDebugEngine.cpp">
+      <Filter>Source\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CLua.cpp">
+      <Filter>Source\scripting\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="CRichPresence.cpp">
+      <Filter>Source\tools\CRichPresence</Filter>
+    </ClCompile>
+    <ClCompile Include="CModelIDs.cpp">
+      <Filter>Source\misc\CModelIDs</Filter>
+    </ClCompile>
+    <ClCompile Include="CCustomData.cpp">
+      <Filter>Source\misc\CCustomData</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

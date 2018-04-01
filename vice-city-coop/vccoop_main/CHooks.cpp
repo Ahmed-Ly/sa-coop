@@ -285,25 +285,26 @@ void CHooks::DoBulletImpact(CWeapon*This, CEntity* source, CEntity* target, CVec
 
 void CHooks::InitHooks()
 {
+	original_CPlayerPed__ProcessControl = (char(__thiscall*)(CPlayerPed*))DetourFunction((PBYTE)0x60EA90, (PBYTE)CPlayerPed__ProcessControl_Hook);
 /*	original_CPed__InflictDamage			= (char(__thiscall*)(CPed*, CEntity*, eWeaponType, float, ePedPieceTypes, UCHAR))DetourFunction((PBYTE)0x525B20, (PBYTE)CPed__InflictDamage_Hook);
 	original_CPed__SetDead					= (int(__thiscall*)(CPed*))DetourFunction((PBYTE)0x4F6430, (PBYTE)CPed__SetDead_Hook);
 	original_ShowExceptionBox				= (signed int(__cdecl*)(DWORD*, int, int))DetourFunction((PBYTE)0x677E40, (PBYTE)ShowExceptionBox_Hook);
-	original_CPlayerPed__ProcessControl		= (char(__thiscall*)(CPlayerPed*))DetourFunction((PBYTE)0x537270, (PBYTE)CPlayerPed__ProcessControl_Hook);
+	
 	original_CAutomobile__ProcessControl	= (char(__thiscall*)(CVehicle*))DetourFunction((PBYTE)0x593030, (PBYTE)CAutomobile__ProcessControl_Hook);
 	original_CWeapon__DoBulletImpact		= (int(__thiscall*)(CWeapon*This, CEntity*, CEntity*, CVector*, CVector*, CColPoint*, CVector2D))DetourFunction((PBYTE)0x5CEE60, (PBYTE)CWeapon__DoBulletImpact_Hook);
-
+	
 #ifdef SACOOP_DEBUG_ENGINE
 	patch::ReplaceFunction(0x401000, Hooked_DbgPrint);//we overwrite the original func because thats not needed
 	RedirectAllCalls(0x401000, 0x67DD05, 0x6F2434, Hooked_DbgPrint);//the original is needed
 	RedirectAllCalls(0x401000, 0x67DD05, 0x4A69D0, Hooked_LoadingScreen);//the original is needed
 	patch::ReplaceFunction(0x648AC0, Hooked_DbgPrint);
 	debugEnabled = true;
-#endif
-
-	MakeCall(0x42BE05, Hooked_SpawnPedAfterDeath);
+#endif*/
+	/*
+	MakeCall(0x42BE05, Hooked_SpawnPedAfterDeath);*/
 
 	// Hook script process (so we can spawn a local player)
-	MakeCall(0x450245, Hook_CRunningScript__Process);
+	MakeCall(0x469F00, Hook_CRunningScript__Process);
 
 	//MemWrite<DWORD>(0x694D90, (DWORD)Patched_CPlayerPed__ProcessControl);
 	//MemWrite<DWORD>(0x69ADB0, (DWORD)Patched_CAutomobile_ProcessControl);*/

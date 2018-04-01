@@ -610,10 +610,10 @@ void SyncLocalPlayer(PlayerSyncData spd)
 }
 void CClientNetwork::ReceiveSPDUpdate(librg_message_t* msg)
 {
-	PlayerSyncData spd;
-	librg_data_rptr(msg->data, &spd, sizeof(PlayerSyncData));
+//	PlayerSyncData spd;
+//	librg_data_rptr(msg->data, &spd, sizeof(PlayerSyncData));
 
-	SyncLocalPlayer(spd);
+//	SyncLocalPlayer(spd);
 }
 void CClientNetwork::AttemptConnect(char* szAddress, int iPort) 
 {

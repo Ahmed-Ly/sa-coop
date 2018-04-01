@@ -6,7 +6,7 @@ CConfiguration::CConfiguration()
 	this->configOpened	= false;
 
 	if (this->configFilename.empty())
-		this->configFilename = VCCOOP_DEFAULT_SERVER_CONFIG;
+		this->configFilename = SACOOP_DEFAULT_SERVER_CONFIG;
 	
 	this->_inih = new INIReader(this->configFilename);
 	if (this->GetReader()->ParseError() < 0) {
@@ -119,8 +119,8 @@ void CConfiguration::PopulateValues()
 {
 	/* Populate configuration values from INI */
 	/* Default values specified in config.h */
-	gServerNetwork->ServerPort = gConfig->GetReader()->GetInteger("Server", "Port", VCCOOP_DEFAULT_SERVER_PORT);
-	gServerNetwork->ServerSecret = gConfig->GetReader()->GetInteger("Server", "Secret", VCCOOP_DEFAULT_SERVER_SECRET);
+	gServerNetwork->ServerPort = gConfig->GetReader()->GetInteger("Server", "Port", SACOOP_DEFAULT_SERVER_PORT);
+	gServerNetwork->ServerSecret = gConfig->GetReader()->GetInteger("Server", "Secret", SACOOP_DEFAULT_SERVER_SECRET);
 }
 std::string CConfiguration::sections(INIReader &reader)
 {

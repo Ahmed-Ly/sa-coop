@@ -6,7 +6,7 @@ CLogger::CLogger()
 	path = path_to_session_log_file();
 	out = std::ofstream(path);
 
-	this->Log("[CCore] %s %s loaded.\n", VCCOOP_NAME, VCCOOP_VER);
+	this->Log("[CCore] %s %s loaded.\n", SACOOP_NAME, SACOOP_VER);
 }
 CLogger::~CLogger()
 {
@@ -37,7 +37,7 @@ void CLogger::Log(char * format, ...)
 
 	// Application Name
 	buf.append("[");
-	buf.append(VCCOOP_NAME);
+	buf.append(SACOOP_NAME);
 	buf.append("]");
 
 	// Message

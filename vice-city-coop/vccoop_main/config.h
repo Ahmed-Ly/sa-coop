@@ -4,63 +4,63 @@
 //#define SACOOP_VERBOSE_LOG
 
 // Define this for verbose lua output (in server)
-//#define VCCOOP_LUA_VERBOSE_LOG
+//#define SACOOP_LUA_VERBOSE_LOG
 
 // Temporary spawn position
-#define VCCOOP_DEFAULT_SPAWN_POSITION	531.629761f, 606.497253f, 10.901563f
+#define SACOOP_DEFAULT_SPAWN_POSITION	531.629761f, 606.497253f, 10.901563f
 
 // Default nickname
-#define VCCOOP_DEFAULT_NICKNAME			"Nickname123"
+#define SACOOP_DEFAULT_NICKNAME			"Nickname123"
 
 // Default server address
-#define VCCOOP_DEFAULT_SERVER_ADDRESS	"127.0.0.1"
+#define SACOOP_DEFAULT_SERVER_ADDRESS	"127.0.0.1"
 
 // Default server port
-#define VCCOOP_DEFAULT_SERVER_PORT		23546
+#define SACOOP_DEFAULT_SERVER_PORT		23546
 
 // Default server secret
-#define VCCOOP_DEFAULT_SERVER_SECRET	420420420
+#define SACOOP_DEFAULT_SERVER_SECRET	420420420
 
 // Default server config filename
-#define VCCOOP_DEFAULT_SERVER_CONFIG	"server.ini"
+#define SACOOP_DEFAULT_SERVER_CONFIG	"server.ini"
 
 // Default client config filename
-#define VCCOOP_DEFAULT_CLIENT_CONFIG	".//vccoop//client.ini"
+#define SACOOP_DEFAULT_CLIENT_CONFIG	".//sacoop//client.ini"
 
 //print game's internal debug messages
 #define SACOOP_DEBUG_ENGINE
 
 //------------------------------------------------------------------------------------------
-#ifndef VCCOOP_SERVER 
-	#define VCCOOP_NAME									"VC CO-OP"
-	#define VCCOOP_VER									"0.02"
+#ifndef SACOOP_SERVER 
+	#define SACOOP_NAME									"SA CO-OP"
+	#define SACOOP_VER									"0.02"
 
 	#ifdef SACOOP_DEBUG
-		#define VCCOOP_WINDOW_TITLE						"Vice City CO-OP [Debug] " VCCOOP_VER
+		#define SACOOP_WINDOW_TITLE						"San Andreas CO-OP [Debug] " SACOOP_VER
 	#else
-		#define VCCOOP_WINDOW_TITLE						"Vice City CO-OP " VCCOOP_VER
+		#define SACOOP_WINDOW_TITLE						"San Andreas CO-OP " SACOOP_VER
 	#endif
 #else
-	#define VCCOOP_VER									"0.02a"
+	#define SACOOP_VER									"0.02a"
 	#ifdef _MSC_VER
 			#ifdef SACOOP_DEBUG
-				#define VCCOOP_NAME						"VC CO-OP Debug Server"
+				#define SACOOP_NAME						"SA CO-OP Debug Server"
 			#else
-				#define VCCOOP_NAME						"VC CO-OP Server"
+				#define SACOOP_NAME						"SA CO-OP Server"
 			#endif
-			#define VCCOOP_SERVER_WINDOW_TITLE			VCCOOP_NAME " " VCCOOP_VER
+			#define SACOOP_SERVER_WINDOW_TITLE			SACOOP_NAME " " SACOOP_VER
 	#else
 			#ifdef SACOOP_DEBUG
-				#define VCCOOP_NAME						"VC CO-OP Debug Server"
+				#define SACOOP_NAME						"SA CO-OP Debug Server"
 			#else
-				#define VCCOOP_NAME						"VC CO-OP Server"
+				#define SACOOP_NAME						"SA CO-OP Server"
 			#endif	
 	#endif
 #endif
 
 #define DEFAULT_TIME_FORMAT				"%Y%m%d_%H%M%S"
 #define LOGGER_TIME_FORMAT				"%H:%M:%S"
-#define VC_TITLE						"GTA: Vice City"
+#define SA_TITLE						"GTA: San Andreas"
 
 #define MAX_PLAYERS						500
 #define MAX_OBJECTS						1000
@@ -377,7 +377,7 @@ public:
 #pragma pack(pop)
 #endif
 
-#if defined(VCCOOP_SERVER)
+#if defined(SACOOP_SERVER)
 enum ePedAction : unsigned int
 {
 	None = 0,

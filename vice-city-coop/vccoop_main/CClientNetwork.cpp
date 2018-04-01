@@ -119,7 +119,7 @@ void CClientNetwork::on_connect_request(librg_event_t *event)
 	gLog->Log("[CClientNetwork] Connecting as %s\n", name);
 
 	librg_data_wptr(event->data, (void*)&name, sizeof(name));
-	librg_data_wu32(event->data, VCCOOP_DEFAULT_SERVER_SECRET);
+	librg_data_wu32(event->data, SACOOP_DEFAULT_SERVER_SECRET);
 }
 
 void CClientNetwork::on_connect_accepted(librg_event_t *event) 

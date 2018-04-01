@@ -600,7 +600,7 @@ void CServerNetwork::measure(void *userptr) {
 #ifndef SACOOP_DEBUG
 	std::string buf("[");
 	buf.append(time_stamp(LOGGER_TIME_FORMAT));
-	buf.append("][" VCCOOP_NAME "][CServerNetwork]");
+	buf.append("][" SACOOP_NAME "][CServerNetwork]");
 	printf("%s Server Port: %d | Players: %d/2000 | Entities: %d/2000\n%s took %f ms. Used bandwidth D/U: (%f / %f) mbps.\n", buf.c_str(), ServerPort, playerEntities.size(), otherEntities.size(), buf.c_str(), ctx->last_update, dl, up);
 
 	if (playerEntities.size() >= 1)	{

@@ -6,7 +6,7 @@
 
 	Copyright (c) 2017-2018 VC:CO-OP Team
 */
-#ifdef VCCOOP_LIBRG_DEBUG
+#ifdef SACOOP_LIBRG_DEBUG
 #define LIBRG_DEBUG
 #endif
 #define HAS_SOCKLEN_T 1
@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
 	std::string input;
 	
 #if defined(_MSC_VER)
-	SetConsoleTitle(TEXT(VCCOOP_SERVER_WINDOW_TITLE));
+	SetConsoleTitle(TEXT(SACOOP_SERVER_WINDOW_TITLE));
 #endif
 	
 	gLog			= new CLogger;
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
 	gConfig->PopulateValues();
 	if (!gConfig->IsConfigLoaded())	{
 #if defined(_MSC_VER)
-		MessageBoxA(NULL, "An error occurred when populating the server configuration.\nTry running the server with elevated permissions.", VCCOOP_NAME " " VCCOOP_VER, MB_OK | MB_ICONERROR);
+		MessageBoxA(NULL, "An error occurred when populating the server configuration.\nTry running the server with elevated permissions.", SACOOP_NAME " " SACOOP_VER, MB_OK | MB_ICONERROR);
 #endif
 		gLog->Log("[CConfiguration][ERROR] An error occurred when populating the server configuration. Try running the server with elevated permissions.\n");
 

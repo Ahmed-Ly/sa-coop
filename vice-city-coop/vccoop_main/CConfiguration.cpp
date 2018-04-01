@@ -7,16 +7,16 @@ CConfiguration::CConfiguration()
 	this->configPopulated	= false;
 
 	if (this->configFilename.empty())
-		this->configFilename = VCCOOP_DEFAULT_CLIENT_CONFIG;
+		this->configFilename = SACOOP_DEFAULT_CLIENT_CONFIG;
 	
 	this->_inih = new INIReader(this->configFilename);
 	if (this->GetReader()->ParseError() < 0) {
 		gLog->Log("[CConfiguration] %s could not be loaded. Creating default config file.\n", this->configFilename.c_str());
 
-		FILE* f = fopen(VCCOOP_DEFAULT_CLIENT_CONFIG, "w");
+		FILE* f = fopen(SACOOP_DEFAULT_CLIENT_CONFIG, "w");
 		if (f)		{
 			char buffer[256];
-			sprintf(buffer, "[Client]\nNickname=" VCCOOP_DEFAULT_NICKNAME "\nChatTimestamp=false\n[Server]\nServerAddress=" VCCOOP_DEFAULT_SERVER_ADDRESS "\nServerPort=%d", VCCOOP_DEFAULT_SERVER_PORT);
+			sprintf(buffer, "[Client]\nNickname=" SACOOP_DEFAULT_NICKNAME "\nChatTimestamp=false\n[Server]\nServerAddress=" SACOOP_DEFAULT_SERVER_ADDRESS "\nServerPort=%d", SACOOP_DEFAULT_SERVER_PORT);
 			fputs(buffer, f);
 			fclose(f);
 			gLog->Log("[CConfiguration] Created default config file.\n");
@@ -59,12 +59,12 @@ void CConfiguration::PopulateValues(char srvIP[15], int& srvPort, char cliName[2
 
 	/* Populate configuration values from INI */
 	/* Default values specified in config.h */
-	std::string tmp = this->GetReader()->Get("Server", "ServerAddress", VCCOOP_DEFAULT_SERVER_ADDRESS);
+	std::string tmp = this->GetReader()->Get("Server", "ServerAddress", SACOOP_DEFAULT_SERVER_ADDRESS);
 	strcpy(this->ServerAddress, tmp.c_str());
 
-	this->ServerPort = this->GetReader()->GetInteger("Server", "ServerPort", VCCOOP_DEFAULT_SERVER_PORT);
+	this->ServerPort = this->GetReader()->GetInteger("Server", "ServerPort", SACOOP_DEFAULT_SERVER_PORT);
 
-	std::string name = this->GetReader()->Get("Client", "Nickname", VCCOOP_DEFAULT_NICKNAME);
+	std::string name = this->GetReader()->Get("Client", "Nickname", SACOOP_DEFAULT_NICKNAME);
 	strcpy(this->Nickname, name.c_str());
 
 	bool chattimestamp = this->GetReader()->GetBoolean("Client", "ChatTimestamp", false);

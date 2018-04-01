@@ -8,7 +8,7 @@ CClientPlayer::CClientPlayer(int nID, int gID)
 	CWorld::Players[gID].m_pPed->m_nPedState = (ePedState)1;
 	this->ped = CWorld::Players[gID].m_pPed;
 
-	this->ped->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
+	this->ped->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
 
 	if (this->syncData.iModelIndex >= 0) {
 		if (CStreaming::ms_aInfoForModel[this->syncData.iModelIndex].m_nLoadState != LOADSTATE_LOADED) {
@@ -43,7 +43,7 @@ void CClientPlayer::StreamIn()
 	CPlayerPed::SetupPlayerPed(this->gameID);
 	CWorld::Players[this->gameID].m_pPed->m_nPedState = (ePedState)2;
 	this->ped = CWorld::Players[this->gameID].m_pPed;
-	this->ped->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
+	this->ped->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
 
 	if (this->syncData.iModelIndex >= 0) {
 		if (CStreaming::ms_aInfoForModel[this->syncData.iModelIndex].m_nLoadState != LOADSTATE_LOADED) {
@@ -91,7 +91,7 @@ void CClientPlayer::Respawn()
 	CPlayerPed::SetupPlayerPed(this->gameID);
 	CWorld::Players[this->gameID].m_pPed->m_nPedState = (ePedState)2;
 	this->ped = CWorld::Players[this->gameID].m_pPed;
-	this->ped->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
+	this->ped->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
 
 	if (this->syncData.iModelIndex >= 0) {
 		if (CStreaming::ms_aInfoForModel[this->syncData.iModelIndex].m_nLoadState != LOADSTATE_LOADED) {

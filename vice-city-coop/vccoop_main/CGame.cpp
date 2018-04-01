@@ -60,7 +60,7 @@ void CGame::OnConnected()
 	gLog->Log("[CGame] OnConnected called!\n");
 #endif
 
-	gChat->AddChatMessage("[" VCCOOP_NAME "] " "Connected to %s:%d as %s successfully.", gNetwork->ServerAddress, gNetwork->ServerPort, gGame->Name.c_str());
+	gChat->AddChatMessage("[" SACOOP_NAME "] " "Connected to %s:%d as %s successfully.", gNetwork->ServerAddress, gNetwork->ServerPort, gGame->Name.c_str());
 }
 void CGame::StartMissionScript()
 {
@@ -560,7 +560,7 @@ CVehicle * CGame::CreateVehicle(int modelIndex, CVector position)
 		
 		// invalid position set.. fuck that.. reset it!
 		if (vehicle->m_placement.m_vPosn.x <= -10000.f || vehicle->m_placement.m_vPosn.y <= -10000.f || vehicle->m_placement.m_vPosn.z <= -10000.f)		{
-			vehicle->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
+			vehicle->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
 		}
 
 		CWorld::Add(vehicle);
@@ -637,12 +637,12 @@ LRESULT CALLBACK wnd_proc(HWND wnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 			}
 			else if (vkey == VK_F9 && !gNetwork->connected)
 			{
-				LocalPlayer()->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
-				gLog->Log("[CGame] Teleporting to X: %.f Y: %.f Z: %.f\n", VCCOOP_DEFAULT_SPAWN_POSITION);
+				LocalPlayer()->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
+				gLog->Log("[CGame] Teleporting to X: %.f Y: %.f Z: %.f\n", SACOOP_DEFAULT_SPAWN_POSITION);
 			}
 			else if (vkey == VK_F10 && !gNetwork->connected) // crashfix
 			{
-				gNetwork->AttemptConnect("127.0.0.1", VCCOOP_DEFAULT_SERVER_PORT);
+				gNetwork->AttemptConnect("127.0.0.1", SACOOP_DEFAULT_SERVER_PORT);
 				gLog->Log("[CGame] Attempting to connect to local server\n");
 			}
 			break;

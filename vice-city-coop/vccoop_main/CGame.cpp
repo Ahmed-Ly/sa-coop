@@ -208,7 +208,7 @@ void CGame::EnableHUD()
 
 void CGame::SetCoordBlip(CVector coord, uint unk, eBlipDisplay blipDisplay)
 {
-	Call(0x4C3C80, eBlipType::BLIP_COORD, coord, unk, blipDisplay);
+	Call(0x583820, eBlipType::BLIP_COORD, coord, unk, blipDisplay);
 }
 
 CPlayerPed* CWorld_Players;
@@ -228,11 +228,11 @@ void RedirectAllPointers(int startaddr, int endaddr, MemoryPointer with, MemoryP
 void CGame::InitPreGamePatches()
 {
 	DWORD flOldProtect;
-	VirtualProtect((LPVOID)0x401000, 0x27CE00u, PAGE_EXECUTE_READWRITE, &flOldProtect);
+	VirtualProtect((LPVOID)0x401000, 0x455C95, PAGE_EXECUTE_READWRITE, &flOldProtect); // Set To SA Range
 
 	CWorld_Players = (CPlayerPed*)malloc(0x170 * MAX_PLAYERS);
 	
-	RedirectAllPointers(0x401000, 0x67DD05, 0xA10AFB, CWorld_Players);
+	RedirectAllPointers(0x401000, 0x67DD05, &CWorld::PlayerInFocus, CWorld_Players);
 
 #ifdef SACOOP_DEBUG
 	// Patch to allow multiple instances of the game
@@ -539,18 +539,34 @@ CVehicle * CGame::CreateVehicle(int modelIndex, CVector position)
 	gLog->Log("[CGame] Vehicle type: %d\n", reinterpret_cast<CVehicleModelInfo *>(CModelInfo::ms_modelInfoPtrs[modelIndex])->m_nVehicleType);
 	switch (reinterpret_cast<CVehicleModelInfo *>(CModelInfo::ms_modelInfoPtrs[modelIndex])->m_nVehicleType)
 	{
+    case VEHICLE_MTRUCK:
+        vehicle = new CMonsterTruck(modelIndex, 1);
+        break;
+    case VEHICLE_QUAD:
+        vehicle = new CQuadBike(modelIndex, 1);
+        break;
 	case VEHICLE_HELI:
-		vehicle = new CHeli(modelIndex, 2);
+		vehicle = new CHeli(modelIndex, 1);
 		break;
 	case VEHICLE_PLANE:
-		vehicle = new CPlane(modelIndex, 2);
-		break;
-	case VEHICLE_BIKE:
-		vehicle = new CBike(modelIndex, 2);
+		vehicle = new CPlane(modelIndex, 1);
 		break;
 	case VEHICLE_BOAT:
-		vehicle = new CBoat(modelIndex, 2);
+		vehicle = new CBoat(modelIndex, 1);
 		break;
+    case VEHICLE_BIKE:
+        vehicle = new CBike(modelIndex, 1);
+        static_cast<CBike*>(vehicle)->m_nDamageFlags |= 0x10;
+        break;
+    case VEHICLE_BMX:
+        vehicle = new CBmx(modelIndex, 1);
+        static_cast<CBmx*>(vehicle)->m_nDamageFlags |= 0x10;
+        break;
+    case VEHICLE_TRAILER:
+        vehicle = new CTrailer(modelIndex, 1);
+    default:
+        vehicle = new CAutomobile(modelIndex, 1, true);
+
 	}
 	if (vehicle)
 	{

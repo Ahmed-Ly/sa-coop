@@ -1,5 +1,5 @@
 /*
-	Vice City CO-OP Server
+	San Andreas CO-OP Server
 
 	Author(s)	LemonHaze
 				Zeyad Ahmed

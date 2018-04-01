@@ -133,8 +133,8 @@ void CRender::InitFont()
 		// Populate GUI variables with retrieved config values
 		gConfig->PopulateValues(IP, Port, Nickname);
 		if (!gConfig->IsDataDirValid() || !gConfig->IsConfigLoaded())		{
-			MessageBoxA(orig_wnd, "An error occurred when populating the game configuration.\nTry running Vice City with elevated permissions.", SACOOP_NAME " " SACOOP_VER, MB_OK | MB_ICONERROR);
-			gLog->Log("[CConfiguration] An error occurred when populating the game configuration. Try running Vice City with elevated permissions.\n");
+			MessageBoxA(orig_wnd, "An error occurred when populating the game configuration.\nTry running San Andreas with elevated permissions.", SACOOP_NAME " " SACOOP_VER, MB_OK | MB_ICONERROR);
+			gLog->Log("[CConfiguration] An error occurred when populating the game configuration. Try running San Andreas with elevated permissions.\n");
 			gGame->Exit();
 		}
 		gRender->Initialized = true;
@@ -291,7 +291,7 @@ void CRender::Draw()
 					ImGui::SetNextWindowPosCenter();
 					ImGui::Begin("San Andreas CO-OP " SACOOP_VER, &gRender->bGUI, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
 					ImGui::AlignTextToFramePadding();
-					ImGui::Text("\tWelcome to Vice City CO-OP " SACOOP_VER "\n\t\t  - Alpha Version - ");
+					ImGui::Text("\tWelcome to San Andreas CO-OP " SACOOP_VER "\n\t\t  - Alpha Version - ");
 					ImGui::Separator();
 					if (pLogoTex != nullptr)
 					{
@@ -355,7 +355,7 @@ void CRender::Draw()
 				if (!gRender->bConnecting && gRender->bGUI && gRender->bAboutWindow)
 				{
 					ImGui::SetNextWindowPosCenter();
-					ImGui::Begin("About Vice City CO-OP " SACOOP_VER, &gRender->bAboutWindow);
+					ImGui::Begin("About San Andreas CO-OP " SACOOP_VER, &gRender->bAboutWindow);
 					ImGui::Text("WIP");
 					ImGui::End();
 				}

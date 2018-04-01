@@ -47,7 +47,7 @@ void CRichPresence::UpdateRichPresence(bool IsConnected)
 {	
 	DiscordRichPresence dp;
 	memset(&dp, 0, sizeof(dp));
-	dp.largeImageText = "Grand Theft CO-OP: Vice City";
+	dp.largeImageText = "Grand Theft CO-OP: San Andreas";
 	dp.largeImageKey = "main";
 	dp.startTimestamp = time(0);
 

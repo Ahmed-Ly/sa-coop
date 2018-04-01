@@ -617,8 +617,8 @@ void CClientNetwork::ReceiveSPDUpdate(librg_message_t* msg)
 }
 void CClientNetwork::AttemptConnect(char* szAddress, int iPort) 
 {
-	CHooks::InitPool(CPools::ms_pPedPool, MAX_PEDS);
-	CHooks::InitPool(CPools::ms_pVehiclePool, MAX_VEHICLES);
+	//CHooks::InitPool(CPools::ms_pPedPool, MAX_PEDS);
+	//CHooks::InitPool(CPools::ms_pVehiclePool, MAX_VEHICLES);
 
 	client_running = true;
 	ctx.mode = LIBRG_MODE_CLIENT;

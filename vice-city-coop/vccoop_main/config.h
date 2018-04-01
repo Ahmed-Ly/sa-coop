@@ -1,7 +1,7 @@
 #pragma once
 
 // Define this for verbose log output
-//#define SACOOP_VERBOSE_LOG
+#define SACOOP_VERBOSE_LOG
 
 // Define this for verbose lua output (in server)
 //#define SACOOP_LUA_VERBOSE_LOG

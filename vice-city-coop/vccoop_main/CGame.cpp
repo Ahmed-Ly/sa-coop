@@ -510,21 +510,21 @@ void CGame::InitPreGamePatches()
  
 void CGame::EnableMouseInput()
 {
-	//Enable CPad:UpdateMouse
+	/*//Enable CPad:UpdateMouse
 	MemCpy((void*)0x4AD820, "\x53", 1);
 	//CControllerConfigManager::AffectPadFromKeyBoard restore
 	MemCpy((void*)0x4AB6E6, "\xE8\x45\xCE\x16\x00", 5);
 	//CControllerConfigManager::AffectPadFromMouse restore
-	MemCpy((void*)0x4AB6F0, "\xE8\x9B\xCD\x16\x00", 5);
+	MemCpy((void*)0x4AB6F0, "\xE8\x9B\xCD\x16\x00", 5);*/
 }
 void CGame::DisableMouseInput()
 {
-	//Disable CPad:UpdateMouse
+	/*//Disable CPad:UpdateMouse
 	MakeRet(0x4AD820);
 	//CControllerConfigManager::AffectPadFromKeyBoard nop
 	MakeNop(0x4AB6E6, 5);
 	//CControllerConfigManager::AffectPadFromMouse nop
-	MakeNop(0x4AB6F0, 5);
+	MakeNop(0x4AB6F0, 5);*/
 }
 
 CVehicle * CGame::CreateVehicle(int modelIndex, CVector position)

@@ -232,7 +232,7 @@ void CGame::InitPreGamePatches()
 
 	CWorld_Players = (CPlayerPed*)malloc(0x170 * MAX_PLAYERS);
 	
-	RedirectAllPointers(0x401000, 0x67DD05, &CWorld::PlayerInFocus, CWorld_Players);
+	RedirectAllPointers(0x401000, 0x67DD05, CWorld::Players, CWorld_Players);
 
 #ifdef SACOOP_DEBUG
 	// Patch to allow multiple instances of the game

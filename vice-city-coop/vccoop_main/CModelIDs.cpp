@@ -1,4 +1,4 @@
-#ifdef VCCOOP_SERVER
+#ifdef SACOOP_SERVER
 #include "..\server\server.h"
 #else
 #include "main.h"

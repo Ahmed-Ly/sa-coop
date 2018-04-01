@@ -62,7 +62,7 @@ void CRender::Run()
 				orig_wndproc = (WNDPROC)(UINT_PTR)SetWindowLong(wnd, GWL_WNDPROC, (LONG)(UINT_PTR)wnd_proc);
 				orig_wnd = wnd;
 
-				SetWindowText(wnd, VCCOOP_WINDOW_TITLE);
+				SetWindowText(wnd, SACOOP_WINDOW_TITLE);
 				ImmAssociateContext(wnd, 0);
 			}
 			RECT rect;
@@ -133,8 +133,8 @@ void CRender::InitFont()
 		// Populate GUI variables with retrieved config values
 		gConfig->PopulateValues(IP, Port, Nickname);
 		if (!gConfig->IsDataDirValid() || !gConfig->IsConfigLoaded())		{
-			MessageBoxA(orig_wnd, "An error occurred when populating the game configuration.\nTry running Vice City with elevated permissions.", VCCOOP_NAME " " VCCOOP_VER, MB_OK | MB_ICONERROR);
-			gLog->Log("[CConfiguration] An error occurred when populating the game configuration. Try running Vice City with elevated permissions.\n");
+			MessageBoxA(orig_wnd, "An error occurred when populating the game configuration.\nTry running San Andreas with elevated permissions.", SACOOP_NAME " " SACOOP_VER, MB_OK | MB_ICONERROR);
+			gLog->Log("[CConfiguration] An error occurred when populating the game configuration. Try running San Andreas with elevated permissions.\n");
 			gGame->Exit();
 		}
 		gRender->Initialized = true;
@@ -196,7 +196,7 @@ void CRender::Draw()
 			if (gRender->bEscMenu)
 			{
 				ImGui::SetNextWindowPosCenter();
-				ImGui::Begin("Vice City CO-OP " VCCOOP_VER, &gRender->bGUI, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
+				ImGui::Begin("San Andreas CO-OP " SACOOP_VER, &gRender->bGUI, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
 				
 				if (ImGui::Button("Display options"))currentPanel = 0; ImGui::SameLine();
 				if (ImGui::Button("Sound options"))currentPanel = 1; ImGui::SameLine();
@@ -278,7 +278,7 @@ void CRender::Draw()
 				if (gRender->bConnecting && gNetwork->client_running)
 				{
 					ImGui::SetNextWindowPosCenter();
-					ImGui::Begin("Vice City CO-OP " VCCOOP_VER, &gRender->bConnecting, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
+					ImGui::Begin("San Andreas CO-OP " SACOOP_VER, &gRender->bConnecting, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
 					ImGui::Text("Connecting...");
 					ImGui::End();
 				}
@@ -289,9 +289,9 @@ void CRender::Draw()
 				if (gRender->bGUI && !gRender->bConnecting)
 				{
 					ImGui::SetNextWindowPosCenter();
-					ImGui::Begin("Vice City CO-OP " VCCOOP_VER, &gRender->bGUI, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
+					ImGui::Begin("San Andreas CO-OP " SACOOP_VER, &gRender->bGUI, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings);
 					ImGui::AlignTextToFramePadding();
-					ImGui::Text("\tWelcome to Vice City CO-OP " VCCOOP_VER "\n\t\t  - Alpha Version - ");
+					ImGui::Text("\tWelcome to San Andreas CO-OP " SACOOP_VER "\n\t\t  - Alpha Version - ");
 					ImGui::Separator();
 					if (pLogoTex != nullptr)
 					{
@@ -330,7 +330,7 @@ void CRender::Draw()
 
 						if (strlen(gGame->Name.c_str()) >= 3)
 						{
-							gNetwork->AttemptConnect("127.0.0.1", VCCOOP_DEFAULT_SERVER_PORT);
+							gNetwork->AttemptConnect("127.0.0.1", SACOOP_DEFAULT_SERVER_PORT);
 							
 							gRender->bConnecting = true;
 							gRender->bGUI = false;
@@ -355,7 +355,7 @@ void CRender::Draw()
 				if (!gRender->bConnecting && gRender->bGUI && gRender->bAboutWindow)
 				{
 					ImGui::SetNextWindowPosCenter();
-					ImGui::Begin("About Vice City CO-OP " VCCOOP_VER, &gRender->bAboutWindow);
+					ImGui::Begin("About San Andreas CO-OP " SACOOP_VER, &gRender->bAboutWindow);
 					ImGui::Text("WIP");
 					ImGui::End();
 				}

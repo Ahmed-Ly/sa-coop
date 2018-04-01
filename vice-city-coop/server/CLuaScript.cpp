@@ -59,7 +59,7 @@ int CLuaScript::lua_GivePlayerWeapon(lua_State* L)
 {
 	if (lua_gettop(L) == 3) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tointeger(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr) {
+		if (entity && entity->type == SACOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr) {
 			int model = lua_tointeger(L, 2);
 			int ammo = lua_tointeger(L, 3);
 
@@ -129,9 +129,9 @@ int CLuaScript::lua_GetEntityType(lua_State *L)
 	if (lua_gettop(L) == 1)
 	{
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && (entity->type == VCOOP_PLAYER || entity->type == VCOOP_VEHICLE || entity->type == VCOOP_PED || entity->type == VCOOP_OBJECT))		{
+		if (entity && (entity->type == SACOOP_PLAYER || entity->type == SACOOP_VEHICLE || entity->type == SACOOP_PED || entity->type == SACOOP_OBJECT))		{
 			switch (entity->type)			{
-			case VCOOP_PLAYER:
+			case SACOOP_PLAYER:
 				lua_pushinteger(L, 1);
 				if (librg_entity_control_get(&gServerNetwork->ctx, entity->id))				{
 					librg_entity_t* control_entity = librg_entity_find(&gServerNetwork->ctx, librg_entity_control_get(&gServerNetwork->ctx, entity->id));
@@ -144,7 +144,7 @@ int CLuaScript::lua_GetEntityType(lua_State *L)
 				}
 				else return 1;
 				break;
-			case VCOOP_PED:
+			case SACOOP_PED:
 				lua_pushinteger(L, 2);
 				if (librg_entity_control_get(&gServerNetwork->ctx, entity->id)) {
 					librg_entity_t* control_entity = librg_entity_find(&gServerNetwork->ctx, librg_entity_control_get(&gServerNetwork->ctx, entity->id));
@@ -158,7 +158,7 @@ int CLuaScript::lua_GetEntityType(lua_State *L)
 				}
 				else return 1;
 				break;
-			case VCOOP_VEHICLE:
+			case SACOOP_VEHICLE:
 				lua_pushinteger(L, 3);
 				if (librg_entity_control_get(&gServerNetwork->ctx, entity->id)) {
 					librg_entity_t* control_entity = librg_entity_find(&gServerNetwork->ctx, librg_entity_control_get(&gServerNetwork->ctx, entity->id));
@@ -172,7 +172,7 @@ int CLuaScript::lua_GetEntityType(lua_State *L)
 				}
 				else return 1;
 				break;
-			case VCOOP_OBJECT:
+			case SACOOP_OBJECT:
 				lua_pushinteger(L, 4);
 				if (librg_entity_control_get(&gServerNetwork->ctx, entity->id)) {
 					librg_entity_t* control_entity = librg_entity_find(&gServerNetwork->ctx, librg_entity_control_get(&gServerNetwork->ctx, entity->id));
@@ -197,7 +197,7 @@ int CLuaScript::lua_GetEntityPos(lua_State* L)
 {
 	if (lua_gettop(L) == 1) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && (entity->type == VCOOP_PLAYER || entity->type == VCOOP_VEHICLE || entity->type == VCOOP_PED || entity->type == VCOOP_OBJECT)) {
+		if (entity && (entity->type == SACOOP_PLAYER || entity->type == SACOOP_VEHICLE || entity->type == SACOOP_PED || entity->type == SACOOP_OBJECT)) {
 			lua_pushnumber(L, entity->position.x);
 			lua_pushnumber(L, entity->position.y);
 			lua_pushnumber(L, entity->position.z);
@@ -212,7 +212,7 @@ int CLuaScript::lua_SetEntityPos(lua_State* L)
 	if (lua_gettop(L) == 4) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
 		float X = lua_tonumber(L, 2), Y = lua_tonumber(L, 3), Z = lua_tonumber(L, 4);
-		if (entity && (entity->type == VCOOP_PLAYER || entity->type == VCOOP_VEHICLE || entity->type == VCOOP_PED || entity->type == VCOOP_OBJECT))		{
+		if (entity && (entity->type == SACOOP_PLAYER || entity->type == SACOOP_VEHICLE || entity->type == SACOOP_PED || entity->type == SACOOP_OBJECT))		{
 			if (librg_entity_control_get(&gServerNetwork->ctx, lua_tonumber(L, 1)) != nullptr)
 				librg_entity_control_remove(&gServerNetwork->ctx, entity->id);
 			entity->position.x = X;
@@ -227,9 +227,9 @@ int CLuaScript::lua_GetEntityOrientation(lua_State* L)
 {
 	if (lua_gettop(L) == 1)	{
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && ((entity->type == VCOOP_PLAYER || entity->type == VCOOP_VEHICLE || entity->type == VCOOP_PED))) {
+		if (entity && ((entity->type == SACOOP_PLAYER || entity->type == SACOOP_VEHICLE || entity->type == SACOOP_PED))) {
 			switch (entity->type) {
-				case VCOOP_PLAYER: 
+				case SACOOP_PLAYER: 
 				{
 					PlayerSyncData spd = *(PlayerSyncData*)entity->user_data;
 
@@ -238,7 +238,7 @@ int CLuaScript::lua_GetEntityOrientation(lua_State* L)
 					lua_pushnumber(L, spd.OrientZ);
 					break;
 				}
-				case VCOOP_PED: 
+				case SACOOP_PED: 
 				{
 					PedSyncData spd = *(PedSyncData*)entity->user_data;
 
@@ -247,7 +247,7 @@ int CLuaScript::lua_GetEntityOrientation(lua_State* L)
 					lua_pushnumber(L, spd.OrientZ);
 					break;
 				}
-				case VCOOP_VEHICLE:
+				case SACOOP_VEHICLE:
 				{
 					VehicleSyncData spd = *(VehicleSyncData*)entity->user_data;
 
@@ -267,7 +267,7 @@ int CLuaScript::lua_SetEntityOrientation(lua_State* L)
 {
 	if (lua_gettop(L) == 4) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && ((entity->type == VCOOP_PLAYER || entity->type == VCOOP_VEHICLE || entity->type == VCOOP_PED))) {
+		if (entity && ((entity->type == SACOOP_PLAYER || entity->type == SACOOP_VEHICLE || entity->type == SACOOP_PED))) {
 			if (librg_entity_control_get(&gServerNetwork->ctx, entity->id))
 				if (librg_entity_find(&gServerNetwork->ctx, librg_entity_control_get(&gServerNetwork->ctx, entity->id)))
 					librg_entity_control_remove(&gServerNetwork->ctx, entity->id);
@@ -277,7 +277,7 @@ int CLuaScript::lua_SetEntityOrientation(lua_State* L)
 					Z = lua_tonumber(L, 4);
 
 			switch (entity->type) {
-				case VCOOP_PLAYER:
+				case SACOOP_PLAYER:
 				{
 					PlayerSyncData spd = *(PlayerSyncData*)entity->user_data;
 
@@ -286,7 +286,7 @@ int CLuaScript::lua_SetEntityOrientation(lua_State* L)
 					spd.OrientZ = Z;
 					break;
 				}
-				case VCOOP_PED: 
+				case SACOOP_PED: 
 				{
 					PedSyncData spd = *(PedSyncData*)entity->user_data;
 
@@ -295,7 +295,7 @@ int CLuaScript::lua_SetEntityOrientation(lua_State* L)
 					spd.OrientZ = Z;
 					break;
 				}
-				case VCOOP_VEHICLE:
+				case SACOOP_VEHICLE:
 				{
 					VehicleSyncData spd = *(VehicleSyncData*)entity->user_data;
 
@@ -317,7 +317,7 @@ int CLuaScript::lua_SendGlobalMessage(lua_State* L)
 	
 	char buffer[256];
 	sprintf(buffer, "%s", lua_tolstring(L, 1, NULL));
-	librg_message_send_all(&gServerNetwork->ctx, VCOOP_RECEIVE_MESSAGE, buffer, sizeof(buffer));
+	librg_message_send_all(&gServerNetwork->ctx, SACOOP_RECEIVE_MESSAGE, buffer, sizeof(buffer));
 	return 0;
 }
 int CLuaScript::lua_GetRandomModel(lua_State* L)
@@ -349,7 +349,7 @@ int CLuaScript::lua_GetPlayerModel(lua_State* L)
 {
 	if (lua_gettop(L) == 1) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER) {
+		if (entity && entity->type == SACOOP_PLAYER) {
 			lua_pushnumber(L, CServerNetwork::GetPlayerSyncData(entity->id)->iModelIndex);
 			return 1;
 		}
@@ -360,7 +360,7 @@ int CLuaScript::lua_SetPlayerModel(lua_State* L)
 {
 	if (lua_gettop(L) == 2) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tointeger(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr) {
+		if (entity && entity->type == SACOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr) {
 			int model = lua_tointeger(L, 2);
 			
 			if (CModelIDs::IsValidPedModel(model))
@@ -376,7 +376,7 @@ int CLuaScript::lua_GetPlayerHealth(lua_State* L)
 {
 	if (lua_gettop(L) == 1) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER) {
+		if (entity && entity->type == SACOOP_PLAYER) {
 			lua_pushnumber(L, CServerNetwork::GetPlayerSyncData(entity->id)->Health);
 			return 1;
 		}
@@ -387,7 +387,7 @@ int CLuaScript::lua_SetPlayerHealth(lua_State* L)
 {
 	if (lua_gettop(L) == 2)	{
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tointeger(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr)		{
+		if (entity && entity->type == SACOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr)		{
 			float health = lua_tonumber(L, 2);
 			CServerNetwork::GetPlayerSyncData(entity->id)->Health = health;
 
@@ -400,7 +400,7 @@ int CLuaScript::lua_GetPlayerArmour(lua_State* L)
 {
 	if (lua_gettop(L) == 1) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER) {
+		if (entity && entity->type == SACOOP_PLAYER) {
 			lua_pushnumber(L, CServerNetwork::GetPlayerSyncData(entity->id)->Armour);
 			return 1;
 		}
@@ -411,7 +411,7 @@ int CLuaScript::lua_SetPlayerArmour(lua_State* L)
 {
 	if (lua_gettop(L) == 2) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tointeger(L, 1));
-		if (entity && entity->type == VCOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr) {
+		if (entity && entity->type == SACOOP_PLAYER && CServerNetwork::GetPlayerSyncData(entity->id) != nullptr) {
 			float armour = lua_tonumber(L, 2);
 			CServerNetwork::GetPlayerSyncData(entity->id)->Armour = armour;
 
@@ -424,7 +424,7 @@ int CLuaScript::lua_GetVehicleHealth(lua_State* L)
 {
 	if (lua_gettop(L) == 1) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1));
-		if (entity && entity->type == VCOOP_VEHICLE) {
+		if (entity && entity->type == SACOOP_VEHICLE) {
 			lua_pushnumber(L, ((*(VehicleSyncData*)entity->user_data).Health));
 			return 1;
 		}
@@ -435,7 +435,7 @@ int CLuaScript::lua_SetVehicleHealth(lua_State* L)
 {
 	if (lua_gettop(L) == 2) {
 		librg_entity_t* entity = librg_entity_fetch(&gServerNetwork->ctx, lua_tointeger(L, 1));
-		if (entity && entity->type == VCOOP_VEHICLE) {
+		if (entity && entity->type == SACOOP_VEHICLE) {
 			VehicleSyncData* spd = (VehicleSyncData*)entity->user_data;
 			if (spd) {
 				librg_peer_t* peer = librg_entity_control_get(&gServerNetwork->ctx, entity->id);
@@ -452,11 +452,11 @@ int CLuaScript::lua_SetVehicleHealth(lua_State* L)
 int CLuaScript::lua_StartMissionScript(lua_State* L)
 {
 	if (lua_gettop(L) == 0)	{
-		librg_message_send_all(&gServerNetwork->ctx, VCOOP_START_MISSION_SCRIPT, 0, 0);
+		librg_message_send_all(&gServerNetwork->ctx, SACOOP_START_MISSION_SCRIPT, 0, 0);
 	}
 	else if (lua_gettop(L) == 1)	{
 		if(librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1))->client_peer)
-			librg_message_send_to(&gServerNetwork->ctx, VCOOP_START_MISSION_SCRIPT, librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1))->client_peer, 0, 0);
+			librg_message_send_to(&gServerNetwork->ctx, SACOOP_START_MISSION_SCRIPT, librg_entity_fetch(&gServerNetwork->ctx, lua_tonumber(L, 1))->client_peer, 0, 0);
 	}
 	return 0;
 }
@@ -480,7 +480,7 @@ int CLuaScript::lua_AddObject(lua_State* L)
 	z = lua_tonumber(L, 4);
 	position = CVector(x, y, z);
 
-	librg_entity_t* entity = librg_entity_create(&gServerNetwork->ctx, VCOOP_OBJECT);
+	librg_entity_t* entity = librg_entity_create(&gServerNetwork->ctx, SACOOP_OBJECT);
 	entity->user_data = new ObjectSyncData();
 	((ObjectSyncData*)entity->user_data)->objectID = entity->id;
 	((ObjectSyncData*)entity->user_data)->modelID = objectID;
@@ -528,7 +528,7 @@ int CLuaScript::lua_AddPed(lua_State* L)
 
 	position = CVector(x, y, z);
 
-	librg_entity_t* entity = librg_entity_create(&gServerNetwork->ctx, VCOOP_PED);
+	librg_entity_t* entity = librg_entity_create(&gServerNetwork->ctx, SACOOP_PED);
 	entity->user_data = new PedSyncData();
 	((PedSyncData*)entity->user_data)->iModelIndex	= modelID;
 	((PedSyncData*)entity->user_data)->Wander		= wander;
@@ -559,7 +559,7 @@ int CLuaScript::lua_AddVehicle(lua_State* L)
 		return 0;
 	}
 
-	librg_entity_t* entity								= librg_entity_create(&gServerNetwork->ctx, VCOOP_VEHICLE);
+	librg_entity_t* entity								= librg_entity_create(&gServerNetwork->ctx, SACOOP_VEHICLE);
 	entity->user_data									= new VehicleSyncData();
 	((VehicleSyncData*)entity->user_data)->driver		= -1;
 	((VehicleSyncData*)entity->user_data)->vehicleID	= -1;
@@ -610,7 +610,7 @@ void *CLuaScript::LuaThread(void* lParam)
 	lua_State* lState = instance->m_lState;
 
 	if (lua_pcall(lState, instance->GetArguments(), 0, 0) != 0) {
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 		gLog->Log("[CLuaScript] Error running callback `%s': %s\n", instance->GetCallbackName().c_str(), lua_tostring(lState, -1));
 #endif
 #if !defined (_MSC_VER)
@@ -621,7 +621,7 @@ void *CLuaScript::LuaThread(void* lParam)
 	}
 	else
 	{
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 		gLog->Log("[CLuaScript] Call to %s callback successful.\n", instance->GetCallbackName().c_str());
 #endif
 	}	
@@ -651,7 +651,7 @@ void CLuaScript::Call(std::string callback, char *fmt, ...)
 
 	if (luaL_loadbuffer(m_lState, GetData()->GetData(), GetData()->GetSize() - 1, GetData()->GetName().c_str()) || lua_pcall(m_lState, 0, 0, 0))
 	{
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 		gLog->Log("[CLuaScript] Could not load script buffer when calling callback %s.\n", GetCallbackName().c_str());
 #endif
 		lua_close(m_lState);
@@ -663,7 +663,7 @@ void CLuaScript::Call(std::string callback, char *fmt, ...)
 		if (!lua_isfunction(m_lState, -1))
 		{
 			lua_pop(m_lState, 1);
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 			gLog->Log("[CLuaScript] Could not find `%s' callback.\n", GetCallbackName().c_str());
 #endif
 			return;

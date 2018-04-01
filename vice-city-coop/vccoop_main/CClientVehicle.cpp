@@ -2,7 +2,7 @@
 
 CClientVehicle::CClientVehicle(int nID, int modelID, CVector position, int PrimaryColor, int SecondaryColor)
 {
-	this->type						= VCOOP_VEHICLE;
+	this->type						= SACOOP_VEHICLE;
 	this->model						= modelID;
 	this->streamed					= true;
 	this->networkID					= nID;
@@ -36,7 +36,7 @@ void CClientVehicle::StreamIn()
 		
 	if(this->veh == nullptr)
 	{
-		this->veh = gGame->CreateVehicle(this->model, {VCCOOP_DEFAULT_SPAWN_POSITION});
+		this->veh = gGame->CreateVehicle(this->model, {SACOOP_DEFAULT_SPAWN_POSITION});
 	}
 
 	this->streamed = true;

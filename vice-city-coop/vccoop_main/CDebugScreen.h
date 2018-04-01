@@ -68,7 +68,7 @@ public:
 		ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
 
 		ImGui::SetNextWindowCollapsed(!Collapsed);
-		if (!ImGui::Begin(VCCOOP_WINDOW_TITLE " Console", p_open, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings))
+		if (!ImGui::Begin(SACOOP_WINDOW_TITLE " Console", p_open, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings))
 		{
 			ImGui::End();
 			return;

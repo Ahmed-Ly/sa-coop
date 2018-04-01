@@ -1,7 +1,7 @@
 #include "main.h"
 
 bool debugEnabled = true;
-char   vccoop_string[600];
+char   SACOOP_string[600];
 
 #ifdef SACOOP_DEBUG
 DeveloperConsole* CDebugScreen::gDevConsole;
@@ -18,19 +18,19 @@ void CDebugScreen::Draw()
 {
 	if (!gNetwork->connected)
 	{
-		sprintf(vccoop_string, "%s %s", VCCOOP_NAME, VCCOOP_VER);
+		sprintf(SACOOP_string, "%s %s", SACOOP_NAME, SACOOP_VER);
 	}
 	else
 	{
-		sprintf(vccoop_string, "%s %s     Server: %s:%d   Press F7 to disconnect", VCCOOP_NAME, VCCOOP_VER, gNetwork->addr.host, gNetwork->addr.port);
+		sprintf(SACOOP_string, "%s %s     Server: %s:%d   Press F7 to disconnect", SACOOP_NAME, SACOOP_VER, gNetwork->addr.host, gNetwork->addr.port);
 	}
 
-	SIZE textSize = gRender->MeasureText(vccoop_string);
+	SIZE textSize = gRender->MeasureText(SACOOP_string);
 
-	gRender->RenderText(vccoop_string, { 10, (LONG)screen::GetScreenHeight() - textSize.cy - 5 }, (gNetwork->connected ? 0xFF00FF00 : 0xFFFFFFFF));
+	gRender->RenderText(SACOOP_string, { 10, (LONG)screen::GetScreenHeight() - textSize.cy - 5 }, (gNetwork->connected ? 0xFF00FF00 : 0xFFFFFFFF));
 
-	sprintf(vccoop_string, "Ped pool: %d/%d\nVehicle pool: %d/%d\nmsTime: %d\n", CPools::ms_pPedPool->GetNoOfFreeSpaces(), CPools::ms_pPedPool->m_nSize, CPools::ms_pVehiclePool->GetNoOfFreeSpaces(), CPools::ms_pVehiclePool->m_nSize, CTimer::m_snTimeInMilliseconds);
-	textSize = gRender->MeasureText(vccoop_string);
-	gRender->RenderText(vccoop_string, { (LONG)screen::GetScreenWidth() - textSize.cx - 5, (LONG)screen::GetScreenHeight() -textSize.cy - 5 }, 0xFFFFFFFF);
+	sprintf(SACOOP_string, "Ped pool: %d/%d\nVehicle pool: %d/%d\nmsTime: %d\n", CPools::ms_pPedPool->GetNoOfFreeSpaces(), CPools::ms_pPedPool->m_nSize, CPools::ms_pVehiclePool->GetNoOfFreeSpaces(), CPools::ms_pVehiclePool->m_nSize, CTimer::m_snTimeInMilliseconds);
+	textSize = gRender->MeasureText(SACOOP_string);
+	gRender->RenderText(SACOOP_string, { (LONG)screen::GetScreenWidth() - textSize.cx - 5, (LONG)screen::GetScreenHeight() -textSize.cy - 5 }, 0xFFFFFFFF);
 }
 #endif

@@ -181,7 +181,7 @@ void CServerNetwork::SetPlayerSyncData(int id, PlayerSyncData spd)
 	playerSyncData->m_nPedFlags.bGangMemberReturnsFire = spd.m_nPedFlags.bGangMemberReturnsFire;
 
 	playerData[id] = *playerSyncData;
-	librg_message_send_to(&gServerNetwork->ctx, VCOOP_RECEIVE_SPD_UPDATE, playerEntity->client_peer, playerSyncData, sizeof(PlayerSyncData));
+	librg_message_send_to(&gServerNetwork->ctx, SACOOP_RECEIVE_SPD_UPDATE, playerEntity->client_peer, playerSyncData, sizeof(PlayerSyncData));
 	
 	if (controlEntity)
 	{
@@ -192,7 +192,7 @@ void CServerNetwork::BulletSyncEvent(librg_message_t *msg)
 {
 	bulletSyncData dData;
 	librg_data_rptr(msg->data, &dData, sizeof(bulletSyncData));
-	librg_message_send_except(&ctx, VCOOP_BULLET_SYNC, msg->peer, &dData, sizeof(bulletSyncData));
+	librg_message_send_except(&ctx, SACOOP_BULLET_SYNC, msg->peer, &dData, sizeof(bulletSyncData));
 }
 
 void CServerNetwork::PlayerDeathEvent(librg_message_t *msg)
@@ -203,7 +203,7 @@ void CServerNetwork::PlayerDeathEvent(librg_message_t *msg)
 	librg_entity_t * player = librg_entity_find(msg->ctx, msg->peer);
 	char msg1[256];
 	sprintf(msg1, "[CServerNetwork] Player %d is killed by entity %d with weapon %d\n", player->id, dData.killer, dData.weapon);
-	librg_message_send_except(&ctx, VCOOP_RECEIVE_MESSAGE, msg->peer, &msg1, sizeof(msg1));
+	librg_message_send_except(&ctx, SACOOP_RECEIVE_MESSAGE, msg->peer, &msg1, sizeof(msg1));
 	gLog->Log(msg1);
 
 	gGamemodeScript->Call("onPlayerDeath", "iii", player->id, dData.killer, dData.weapon);
@@ -211,7 +211,7 @@ void CServerNetwork::PlayerDeathEvent(librg_message_t *msg)
 void CServerNetwork::PlayerSpawnEvent(librg_message_t *msg)
 {
 	librg_entity_t * player = librg_entity_find(msg->ctx, msg->peer);	
-	librg_message_send_except(&ctx, VCOOP_RESPAWN_AFTER_DEATH, msg->peer, &player->id, sizeof(u32));
+	librg_message_send_except(&ctx, SACOOP_RESPAWN_AFTER_DEATH, msg->peer, &player->id, sizeof(u32));
 
 	gGamemodeScript->Call("onPlayerRespawn", "i", player->id);
 }
@@ -220,13 +220,13 @@ void CServerNetwork::ClientSendMessage(librg_message_t *msg)
 	char msg1[256];
 	librg_data_rptr(msg->data, &msg1, sizeof(msg1));
 
-	librg_message_send_except(&ctx, VCOOP_RECEIVE_MESSAGE, msg->peer, &msg1, sizeof(msg1));
+	librg_message_send_except(&ctx, SACOOP_RECEIVE_MESSAGE, msg->peer, &msg1, sizeof(msg1));
 
 	gGamemodeScript->Call("onPlayerMessage", "is", librg_entity_find(msg->ctx, msg->peer)->id, msg1);
 }
 void CServerNetwork::PedCreateEvent(librg_message_t *msg)
 {
-	librg_entity_t* entity = librg_entity_create(&ctx, VCOOP_PED);
+	librg_entity_t* entity = librg_entity_create(&ctx, SACOOP_PED);
 	librg_entity_control_set(&ctx, entity->id, msg->peer);
 	
 	// crate our custom data container for ped
@@ -242,7 +242,7 @@ void CServerNetwork::PedCreateEvent(librg_message_t *msg)
 }
 void CServerNetwork::VehCreateEvent(librg_message_t *msg)
 {
-	librg_entity_t* entity = librg_entity_create(&ctx, VCOOP_VEHICLE);
+	librg_entity_t* entity = librg_entity_create(&ctx, SACOOP_VEHICLE);
 	librg_entity_control_set(&ctx, entity->id, msg->peer);
 	
 	entity->user_data = new VehicleSyncData();
@@ -258,7 +258,7 @@ void CServerNetwork::VehCreateEvent(librg_message_t *msg)
 }
 void CServerNetwork::ObjectCreateEvent(librg_message_t *msg)
 {
-	librg_entity_t* entity = librg_entity_create(&ctx, VCOOP_OBJECT);
+	librg_entity_t* entity = librg_entity_create(&ctx, SACOOP_OBJECT);
 	librg_entity_control_set(&ctx, entity->id, msg->peer);
 
 	// crate our custom data container for ped
@@ -291,7 +291,7 @@ void CServerNetwork::HandShakeIsDone(librg_message_t *msg)
 	connectData cData;
 	sprintf(cData.name, playerNames[entity->id]);
 	cData.playerId = entity->id;
-	librg_message_send_except(msg->ctx, VCOOP_CONNECT, entity->client_peer, &cData, sizeof(connectData));
+	librg_message_send_except(msg->ctx, SACOOP_CONNECT, entity->client_peer, &cData, sizeof(connectData));
 
 	// insert data into data pool..
 	playerData[entity->id] = PlayerSyncData();
@@ -303,7 +303,7 @@ void CServerNetwork::HandShakeIsDone(librg_message_t *msg)
 		{
 			sprintf(cData.name, playerNames[it->id]);
 			cData.playerId = it->id;
-			librg_message_send_to(msg->ctx, VCOOP_CONNECT, entity->client_peer, &cData, sizeof(connectData));
+			librg_message_send_to(msg->ctx, SACOOP_CONNECT, entity->client_peer, &cData, sizeof(connectData));
 		}
 	}
 
@@ -342,29 +342,29 @@ void CServerNetwork::on_connect_accepted(librg_event_t *event)
 		{
 			if (it->GetType() == TYPE_CLIENT_SCRIPT)
 			{
-				librg_message_send_to(&ctx, VCOOP_GET_LUA_SCRIPT, event->peer, it->GetData(), it->GetSize());
+				librg_message_send_to(&ctx, SACOOP_GET_LUA_SCRIPT, event->peer, it->GetData(), it->GetSize());
 			}
 		}
 	}
 
-	librg_message_send_to(&ctx, VCOOP_SPAWN_ALLOWED, event->peer, 0, 0);
+	librg_message_send_to(&ctx, SACOOP_SPAWN_ALLOWED, event->peer, 0, 0);
 }
 
 void CServerNetwork::on_creating_entity(librg_event_t *event) 
 {
-	if (event->entity->type == VCOOP_PLAYER) 
+	if (event->entity->type == SACOOP_PLAYER) 
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(PlayerSyncData));
 	}
-	else if (event->entity->type == VCOOP_PED)
+	else if (event->entity->type == SACOOP_PED)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(PedSyncData));
 	}
-	else if (event->entity->type == VCOOP_VEHICLE)
+	else if (event->entity->type == SACOOP_VEHICLE)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(VehicleSyncData));
 	}
-	else if (event->entity->type == VCOOP_OBJECT)
+	else if (event->entity->type == SACOOP_OBJECT)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(ObjectSyncData));
 	}
@@ -372,15 +372,15 @@ void CServerNetwork::on_creating_entity(librg_event_t *event)
 
 void CServerNetwork::on_entity_update(librg_event_t *event)
 {
-	if (event->entity->type == VCOOP_PLAYER)
+	if (event->entity->type == SACOOP_PLAYER)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(PlayerSyncData));
 	}
-	else if (event->entity->type == VCOOP_PED)
+	else if (event->entity->type == SACOOP_PED)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(PedSyncData));
 	}
-	else if (event->entity->type == VCOOP_VEHICLE)
+	else if (event->entity->type == SACOOP_VEHICLE)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(VehicleSyncData));
 
@@ -408,7 +408,7 @@ void CServerNetwork::on_entity_update(librg_event_t *event)
 			}
 		}
 	}
-	else if (event->entity->type == VCOOP_OBJECT)
+	else if (event->entity->type == SACOOP_OBJECT)
 	{
 		librg_data_wptr(event->data, event->entity->user_data, sizeof(ObjectSyncData));
 	}
@@ -418,7 +418,7 @@ void CServerNetwork::on_entity_remove(librg_event_t *event) //entity streamed ou
 {
 	gGamemodeScript->Call("onEntityRemove", "ii", librg_entity_find(&ctx, event->peer)->id, event->entity->type);
 
-	if (event->entity->type == VCOOP_PED)
+	if (event->entity->type == SACOOP_PED)
 	{
 		librg_peer_t * owner = librg_entity_control_get(event->ctx, event->entity->id);
 		if (event->peer == owner)
@@ -430,7 +430,7 @@ void CServerNetwork::on_entity_remove(librg_event_t *event) //entity streamed ou
 			for (int i = 0; i < amount; i++)
 			{
 				librg_entity_t *entity = librg_entity_fetch(event->ctx, entities[i]);
-				if (entity->type == VCOOP_PLAYER)
+				if (entity->type == SACOOP_PLAYER)
 				{
 					librg_entity_control_set(event->ctx, event->entity->id, entity->client_peer); 
 					return;
@@ -439,11 +439,11 @@ void CServerNetwork::on_entity_remove(librg_event_t *event) //entity streamed ou
 			librg_entity_destroy(event->ctx, event->entity->id);
 		}
 	}
-	else if (event->entity->type == VCOOP_VEHICLE)
+	else if (event->entity->type == SACOOP_VEHICLE)
 	{
 		if(librg_entity_control_get(event->ctx, event->entity->id) == event->peer) librg_entity_control_remove(event->ctx, event->entity->id);
 	}
-	else if (event->entity->type == VCOOP_OBJECT)
+	else if (event->entity->type == SACOOP_OBJECT)
 	{
 		if (librg_entity_control_get(event->ctx, event->entity->id) == event->peer) librg_entity_control_remove(event->ctx, event->entity->id);
 	}
@@ -453,19 +453,19 @@ void CServerNetwork::on_stream_update(librg_event_t *event)
 	if (!event->entity->user_data)
 		return;
 
-	if (event->entity->type == VCOOP_PLAYER)
+	if (event->entity->type == SACOOP_PLAYER)
 	{
 		librg_data_rptr(event->data, event->entity->user_data, sizeof(PlayerSyncData));
 	}
-	else if (event->entity->type == VCOOP_PED)
+	else if (event->entity->type == SACOOP_PED)
 	{
 		librg_data_rptr(event->data, event->entity->user_data, sizeof(PedSyncData));
 	}
-	else if (event->entity->type == VCOOP_OBJECT)
+	else if (event->entity->type == SACOOP_OBJECT)
 	{
 		librg_data_rptr(event->data, event->entity->user_data, sizeof(ObjectSyncData));
 	}
-	else if (event->entity->type == VCOOP_VEHICLE)
+	else if (event->entity->type == SACOOP_VEHICLE)
 	{
 		librg_data_rptr(event->data, event->entity->user_data, sizeof(VehicleSyncData));
 
@@ -478,7 +478,7 @@ void CServerNetwork::on_stream_update(librg_event_t *event)
 
 			VehicleSyncData* spd = reinterpret_cast<VehicleSyncData*>(event->entity->user_data);
 			for (auto player : playerEntities) {
-				if (player && player->type == VCOOP_PLAYER) {
+				if (player && player->type == SACOOP_PLAYER) {
 					ped_pos = spd->vehiclePos;
 					player_pos = player->position;
 
@@ -527,21 +527,21 @@ void CServerNetwork::on_stream_update(librg_event_t *event)
 
 void CServerNetwork::on_disconnect(librg_event_t* event)
 {
-	librg_message_send_except(&ctx, VCOOP_DISCONNECT, event->peer, &event->entity->id, sizeof(u32));
+	librg_message_send_except(&ctx, SACOOP_DISCONNECT, event->peer, &event->entity->id, sizeof(u32));
 
 	gLog->Log("[ID#%d] Disconnected from server.\n", event->entity->id);
 
 	librg_entity_id *entities;
 	usize amount = librg_entity_query(event->ctx, event->entity->id, &entities);
 
-	if (event->entity->type == VCOOP_PLAYER) {
+	if (event->entity->type == SACOOP_PLAYER) {
 		strcpy(playerNames[event->entity->id], "");
 	}
 
 	for (int i = 0; i < amount; i++)
 	{
 		librg_entity_t *entity = librg_entity_fetch(event->ctx, entities[i]);
-		if (entity->type == VCOOP_PED)
+		if (entity->type == SACOOP_PED)
 		{
 			librg_peer_t * owner = librg_entity_control_get(event->ctx, entity->id);
 
@@ -554,7 +554,7 @@ void CServerNetwork::on_disconnect(librg_event_t* event)
 				for (int z = 0; z < amount; z++)
 				{
 					librg_entity_t *entity2 = librg_entity_fetch(event->ctx, entities2[z]);
-					if (entity2->type == VCOOP_PLAYER)
+					if (entity2->type == SACOOP_PLAYER)
 					{
 						librg_entity_control_set(event->ctx, event->entity->id, entity2->client_peer);
 						break;
@@ -600,7 +600,7 @@ void CServerNetwork::measure(void *userptr) {
 #ifndef SACOOP_DEBUG
 	std::string buf("[");
 	buf.append(time_stamp(LOGGER_TIME_FORMAT));
-	buf.append("][" VCCOOP_NAME "][CServerNetwork]");
+	buf.append("][" SACOOP_NAME "][CServerNetwork]");
 	printf("%s Server Port: %d | Players: %d/2000 | Entities: %d/2000\n%s took %f ms. Used bandwidth D/U: (%f / %f) mbps.\n", buf.c_str(), ServerPort, playerEntities.size(), otherEntities.size(), buf.c_str(), ctx->last_update, dl, up);
 
 	if (playerEntities.size() >= 1)	{
@@ -639,14 +639,14 @@ void *CServerNetwork::server_thread(void* p)
 	librg_event_add(&ctx,	LIBRG_ENTITY_UPDATE,			on_entity_update);
 	librg_event_add(&ctx,	LIBRG_ENTITY_REMOVE,			on_entity_remove);
 
-	librg_network_add(&ctx, VCOOP_CREATE_PED,				PedCreateEvent);
-	librg_network_add(&ctx, VCOOP_CREATE_VEHICLE,			VehCreateEvent);
-	librg_network_add(&ctx, VCOOP_CREATE_OBJECT,			ObjectCreateEvent);
-	librg_network_add(&ctx, VCOOP_SEND_MESSAGE,				ClientSendMessage);
-	librg_network_add(&ctx, VCOOP_PED_IS_DEAD,				PlayerDeathEvent);
-	librg_network_add(&ctx, VCOOP_RESPAWN_AFTER_DEATH,		PlayerSpawnEvent);
-	librg_network_add(&ctx, VCOOP_CONNECT,					HandShakeIsDone);
-	librg_network_add(&ctx, VCOOP_BULLET_SYNC,				BulletSyncEvent);
+	librg_network_add(&ctx, SACOOP_CREATE_PED,				PedCreateEvent);
+	librg_network_add(&ctx, SACOOP_CREATE_VEHICLE,			VehCreateEvent);
+	librg_network_add(&ctx, SACOOP_CREATE_OBJECT,			ObjectCreateEvent);
+	librg_network_add(&ctx, SACOOP_SEND_MESSAGE,				ClientSendMessage);
+	librg_network_add(&ctx, SACOOP_PED_IS_DEAD,				PlayerDeathEvent);
+	librg_network_add(&ctx, SACOOP_RESPAWN_AFTER_DEATH,		PlayerSpawnEvent);
+	librg_network_add(&ctx, SACOOP_CONNECT,					HandShakeIsDone);
+	librg_network_add(&ctx, SACOOP_BULLET_SYNC,				BulletSyncEvent);
 	
 
 	librg_event_add(&ctx,	LIBRG_CLIENT_STREAMER_UPDATE,	on_stream_update);

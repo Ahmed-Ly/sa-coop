@@ -44,7 +44,7 @@ void CLua::Call(std::string callback, char *fmt, ...)
 
 	if (luaL_loadbuffer(lState, m_Data->GetData(), m_Data->GetSize() - 1, m_Data->GetName().c_str()) || lua_pcall(lState, 0, 0, 0))
 	{
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 		gLog->Log("[CLuaScript] Could not load script buffer when calling callback %s.\n", GetCallbackName().c_str());
 #endif
 		lua_close(lState);
@@ -56,7 +56,7 @@ void CLua::Call(std::string callback, char *fmt, ...)
 		if (!lua_isfunction(lState, -1))
 		{
 			lua_pop(lState, 1);
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 			gLog->Log("[CLuaScript] Could not find `%s' callback.\n", GetCallbackName().c_str());
 #endif
 			return;
@@ -102,14 +102,14 @@ void CLua::LuaThread(LPVOID lParam)
 		lua_State* lState = state->lState;
 
 		if (lua_pcall(lState, state->m_Args, 0, 0) != 0) {
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 			gLog->Log("[CLuaScript] Error running callback `%s': %s\n", state->m_CallBackName.c_str(), lua_tostring(lState, -1));
 #endif
 			return;
 		}
 		else
 		{
-#ifdef VCCOOP_LUA_VERBOSE_LOG
+#ifdef SACOOP_LUA_VERBOSE_LOG
 			gLog->Log("[CLuaScript] Call to %s callback successful.\n", state->m_CallBackName.c_str());
 #endif
 		}
@@ -120,7 +120,7 @@ void CLua::LuaThread(LPVOID lParam)
 	{
 		lua_State* tmp = state->GetState();
 
-		luaL_loadbuffer(tmp, state->mainScript, (size_t)state->mainScriptSize, "vccoop_lua_script");
+		luaL_loadbuffer(tmp, state->mainScript, (size_t)state->mainScriptSize, "SACOOP_lua_script");
 		lua_pcall(tmp, NULL, 0, NULL);
 
 		state->SetLuaStatus(FALSE);

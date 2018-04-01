@@ -150,13 +150,13 @@ void CChat::ProcessChatInput()
 				this->AddChatMessage(buffer);
 
 				sprintf(buffer, "%s: %s", gGame->Name.c_str(), this->chatInputBuffer);
-				librg_message_send_all(&gNetwork->ctx, VCOOP_SEND_MESSAGE, buffer, sizeof(buffer));
+				librg_message_send_all(&gNetwork->ctx, SACOOP_SEND_MESSAGE, buffer, sizeof(buffer));
 			}
 			else
 			{
 				sprintf(buffer, "%s: %s", gGame->Name.c_str(), this->chatInputBuffer);
 				this->AddChatMessage(buffer);
-				librg_message_send_all(&gNetwork->ctx, VCOOP_SEND_MESSAGE, buffer, sizeof(buffer));
+				librg_message_send_all(&gNetwork->ctx, SACOOP_SEND_MESSAGE, buffer, sizeof(buffer));
 			}
 
 		}

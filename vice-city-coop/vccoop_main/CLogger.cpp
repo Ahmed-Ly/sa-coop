@@ -41,7 +41,7 @@ void CLogger::Log(char * format, ...)
 
 	// Application Name
 	buf.append("[");
-	buf.append(VCCOOP_NAME);
+	buf.append(SACOOP_NAME);
 	buf.append("]");
 
 	// Message
@@ -77,7 +77,7 @@ std::string path_to_session_log_file()
 	exePath.append("\\Logs\\");
 
 	static const std::string log_dir = exePath;
-	static const std::string log_file_name = "VCCOOP_log.txt";
+	static const std::string log_file_name = "SACOOP_log.txt";
 
 	return log_dir + time_stamp(DEFAULT_TIME_FORMAT) + '_' + log_file_name;
 }

@@ -131,7 +131,7 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <OutDir>$(PLUGIN_SDK_DIR)\output\examples\</OutDir>
     <IntDir>$(PLUGIN_SDK_DIR)\output\obj\examples\$(ProjectName)\Debug\</IntDir>
-    <TargetName>DXFont.SA_d</TargetName>
+    <TargetName>sacoopd</TargetName>
     <TargetExt>.asi</TargetExt>
     <IncludePath>$(IncludePath);$(DIRECTX9_SDK_DIR)\Include;$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_sa;$(ProjectDir)\vendor\lua\include;$(ProjectDir)\vendor\discord-rpc;$(ProjectDir)\vendor\detours;$(PLUGIN_SDK_DIR)\shared\</IncludePath>
     <LibraryPath>$(LibraryPath);$(DIRECTX9_SDK_DIR)\Lib\x86;$(LibraryPath);$(ProjectDir)\vendor\rw;$(ProjectDir)\vendor\discord-rpc;$(SolutionDir)</LibraryPath>
@@ -244,7 +244,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>VCOOP_DEBUG;VCCOOP_DEBUG;VCCOOP_DEBUG_ENGINE;SACOOP_DEBUG;_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTASA;GTAGAME_NAME="San Andreas";GTAGAME_ABBR="SA";GTAGAME_ABBRLOW="sa";GTAGAME_PROTAGONISTNAME="CJ";GTAGAME_CITYNAME="San Andreas";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SACOOP_VERBOSE_LOG;SACOOP_DEBUG;SACOOP_DEBUG;SACOOP_DEBUG_ENGINE;SACOOP_DEBUG;_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTASA;GTAGAME_NAME="San Andreas";GTAGAME_ABBR="SA";GTAGAME_ABBRLOW="sa";GTAGAME_PROTAGONISTNAME="CJ";GTAGAME_CITYNAME="San Andreas";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(PLUGIN_SDK_DIR)\plugin_sa;$(PLUGIN_SDK_DIR)\plugin_sa\game_sa;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>

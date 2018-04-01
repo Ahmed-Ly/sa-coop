@@ -120,7 +120,7 @@ int __fastcall CPed__SetDead_Hook(CPed * This, DWORD _EDX)
 		deathData dData;
 //		dData.killer = gNetwork->GetNetworkIDFromEntity(This->m_pLastDamEntity);
 //		dData.weapon = This->m_nLastDamWep;
-		librg_message_send_all(&gNetwork->ctx, VCOOP_PED_IS_DEAD, &dData, sizeof(deathData));
+		librg_message_send_all(&gNetwork->ctx, SACOOP_PED_IS_DEAD, &dData, sizeof(deathData));
 	}
 	return original_CPed__SetDead(This);
 }
@@ -136,8 +136,8 @@ void Hooked_SpawnPedAfterDeath()
 	CTimer::Update();
 	gLog->Log("game tried to spawn me\n");
 	CPed * ped = LocalPlayer();
-	ped->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
-	librg_message_send_all(&gNetwork->ctx, VCOOP_RESPAWN_AFTER_DEATH, NULL, 0);
+	ped->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
+	librg_message_send_all(&gNetwork->ctx, SACOOP_RESPAWN_AFTER_DEATH, NULL, 0);
 }
 
 void Hook_CRunningScript__Process()
@@ -158,10 +158,10 @@ void Hook_CRunningScript__Process()
 		gGame->remotePlayerPeds[0] = LocalPlayer();
 
 		// Set player position
-		LocalPlayer()->m_placement.m_vPosn = { VCCOOP_DEFAULT_SPAWN_POSITION };
+		LocalPlayer()->m_placement.m_vPosn = { SACOOP_DEFAULT_SPAWN_POSITION };
 
 		// CStreaming::LoadScene
-		CVector scenePosition(VCCOOP_DEFAULT_SPAWN_POSITION);
+		CVector scenePosition(SACOOP_DEFAULT_SPAWN_POSITION);
 		Call(0x40AF60, &scenePosition);
 
 		CCameraStuff::SetPlayerCameraPosition(531.629761f, 606.497253f, 10.901563f, 0, 0, 0);
@@ -273,7 +273,7 @@ int __fastcall CWeapon__DoBulletImpact_Hook(CWeapon*This, DWORD _EDX, CEntity* s
 		bsData.colPoint = *colpoint;
 		bsData.ahead = ahead;
 
-		librg_message_send_all(&gNetwork->ctx, VCOOP_BULLET_SYNC, &bsData, sizeof(bulletSyncData));
+		librg_message_send_all(&gNetwork->ctx, SACOOP_BULLET_SYNC, &bsData, sizeof(bulletSyncData));
 	}
 	return original_CWeapon__DoBulletImpact(This, source, target, start, end, colpoint, ahead);
 }
@@ -285,25 +285,26 @@ void CHooks::DoBulletImpact(CWeapon*This, CEntity* source, CEntity* target, CVec
 
 void CHooks::InitHooks()
 {
+	original_CPlayerPed__ProcessControl = (char(__thiscall*)(CPlayerPed*))DetourFunction((PBYTE)0x60EA90, (PBYTE)CPlayerPed__ProcessControl_Hook);
 /*	original_CPed__InflictDamage			= (char(__thiscall*)(CPed*, CEntity*, eWeaponType, float, ePedPieceTypes, UCHAR))DetourFunction((PBYTE)0x525B20, (PBYTE)CPed__InflictDamage_Hook);
 	original_CPed__SetDead					= (int(__thiscall*)(CPed*))DetourFunction((PBYTE)0x4F6430, (PBYTE)CPed__SetDead_Hook);
 	original_ShowExceptionBox				= (signed int(__cdecl*)(DWORD*, int, int))DetourFunction((PBYTE)0x677E40, (PBYTE)ShowExceptionBox_Hook);
-	original_CPlayerPed__ProcessControl		= (char(__thiscall*)(CPlayerPed*))DetourFunction((PBYTE)0x537270, (PBYTE)CPlayerPed__ProcessControl_Hook);
+	
 	original_CAutomobile__ProcessControl	= (char(__thiscall*)(CVehicle*))DetourFunction((PBYTE)0x593030, (PBYTE)CAutomobile__ProcessControl_Hook);
 	original_CWeapon__DoBulletImpact		= (int(__thiscall*)(CWeapon*This, CEntity*, CEntity*, CVector*, CVector*, CColPoint*, CVector2D))DetourFunction((PBYTE)0x5CEE60, (PBYTE)CWeapon__DoBulletImpact_Hook);
-
+	
 #ifdef SACOOP_DEBUG_ENGINE
 	patch::ReplaceFunction(0x401000, Hooked_DbgPrint);//we overwrite the original func because thats not needed
 	RedirectAllCalls(0x401000, 0x67DD05, 0x6F2434, Hooked_DbgPrint);//the original is needed
 	RedirectAllCalls(0x401000, 0x67DD05, 0x4A69D0, Hooked_LoadingScreen);//the original is needed
 	patch::ReplaceFunction(0x648AC0, Hooked_DbgPrint);
 	debugEnabled = true;
-#endif
-
-	MakeCall(0x42BE05, Hooked_SpawnPedAfterDeath);
+#endif*/
+	/*
+	MakeCall(0x42BE05, Hooked_SpawnPedAfterDeath);*/
 
 	// Hook script process (so we can spawn a local player)
-	MakeCall(0x450245, Hook_CRunningScript__Process);
+	MakeCall(0x469F00, Hook_CRunningScript__Process);
 
 	//MemWrite<DWORD>(0x694D90, (DWORD)Patched_CPlayerPed__ProcessControl);
 	//MemWrite<DWORD>(0x69ADB0, (DWORD)Patched_CAutomobile_ProcessControl);*/

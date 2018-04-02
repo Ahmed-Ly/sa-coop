@@ -65,7 +65,7 @@ extern "C" {
 #include <ctime>
 
 // VCCOOP
-#include "../vccoop_main/config.h"
+#include "../sacoop_main/config.h"
 
 #if !defined(SACOOP_VERBOSE_LOG) && defined(SACOOP_DEBUG)
 	#define SACOOP_VERBOSE_LOG

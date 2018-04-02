@@ -1,7 +1,7 @@
 @echo off
 TITLE VCCOOP Build Script
 
-SET "outputDir=.\vice-city-coop\bin"
+SET "outputDir=.\san-andreas-coop\bin"
 SET "log=%outputDir%\build.log"
 
 echo Cleaning directories before compilation..
@@ -11,7 +11,7 @@ IF EXIST "%log%" DEL /F /Q "%log%"
 
 echo Building project..
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86 1>"%log%" 2>&1
-devenv ".\vice-city-coop\vice-city-coop.sln" /Rebuild Release 1>"%log%" 2>&1
+devenv ".\san-andreas-coop\san-andreas-coop.sln" /Rebuild Release 1>"%log%" 2>&1
 
 echo. 
 IF ERRORLEVEL 1 (
@@ -22,9 +22,9 @@ IF ERRORLEVEL 1 (
 echo. 
 
 echo Copying binaries..
-copy /Y .\vice-city-coop\server\Debug\server.exe %outputDir%
-copy /Y .\vice-city-coop\vccoop_main\vccoopd.asi %outputDir%
+copy /Y .\san-andreas-coop\server\Debug\server.exe %outputDir%
+copy /Y .\san-andreas-coop\sacoop_main\vccoopd.asi %outputDir%
 
 echo Cleaning source files..
-devenv ".\vice-city-coop\vice-city-coop.sln" /Clean 1>NUL 2>&1
+devenv ".\san-andreas-coop\san-andreas-coop.sln" /Clean 1>NUL 2>&1
 pause

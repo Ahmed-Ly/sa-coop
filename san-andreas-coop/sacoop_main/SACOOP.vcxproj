@@ -187,7 +187,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTAVC;GTAGAME_NAME="Vice City";GTAGAME_ABBR="VC";GTAGAME_ABBRLOW="vc";GTAGAME_PROTAGONISTNAME="Tommy";GTAGAME_CITYNAME="Vice City";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTASA;GTAGAME_NAME="San Andreas";GTAGAME_ABBR="SA";GTAGAME_ABBRLOW="sa";GTAGAME_PROTAGONISTNAME="Tommy";GTAGAME_CITYNAME="San Andreas";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)\vendor\detours\;$(PLUGIN_SDK_DIR)\plugin_vc\;$(PLUGIN_SDK_DIR)\plugin_vc\game_vc\;$(PLUGIN_SDK_DIR)\shared\;$(RWD3D9_DIR)\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>Full</Optimization>
@@ -264,7 +264,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SACOOP_DEBUG;_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTAVC;GTAGAME_NAME="Vice City";GTAGAME_ABBR="VC";GTAGAME_ABBRLOW="vc";GTAGAME_PROTAGONISTNAME="Tommy";GTAGAME_CITYNAME="Vice City";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SACOOP_DEBUG;_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTASA;GTAGAME_NAME="San Andreas";GTAGAME_ABBR="SA";GTAGAME_ABBRLOW="sa";GTAGAME_PROTAGONISTNAME="Tommy";GTAGAME_CITYNAME="San Andreas";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)\vendor\detours\;$(PLUGIN_SDK_DIR)\plugin_vc\;$(PLUGIN_SDK_DIR)\plugin_vc\game_vc\;$(PLUGIN_SDK_DIR)\shared\;$(RWD3D9_DIR)\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>

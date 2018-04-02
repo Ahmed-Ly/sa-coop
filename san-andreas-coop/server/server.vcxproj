@@ -71,11 +71,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\server\Debug\</OutDir>
-    <IncludePath>$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_vc;$(ProjectDir)\vendor\lua\include</IncludePath>
+    <IncludePath>$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_sa;$(ProjectDir)\vendor\lua\include</IncludePath>
     <LibraryPath>$(LibraryPath);$(SolutionDir)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_vc;$(ProjectDir)\vendor\lua\include</IncludePath>
+    <IncludePath>$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_sa;$(ProjectDir)\vendor\lua\include</IncludePath>
     <OutDir>$(SolutionDir)\server\Release\</OutDir>
     <LibraryPath>$(LibraryPath);$(SolutionDir)</LibraryPath>
   </PropertyGroup>

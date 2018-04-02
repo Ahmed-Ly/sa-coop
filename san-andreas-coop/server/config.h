@@ -1,54 +1,54 @@
 #pragma once
 
 // Define this for verbose log output
-#define VCCOOP_VERBOSE_LOG
+#define SACOOP_VERBOSE_LOG
 
 // Define this for verbose lua output (in server)
-//#define VCCOOP_LUA_VERBOSE_LOG
+//#define SACOOP_LUA_VERBOSE_LOG
 
 // Temporary spawn position
-#define VCCOOP_DEFAULT_SPAWN_POSITION	531.629761f, 606.497253f, 10.901563f
+#define SACOOP_DEFAULT_SPAWN_POSITION	531.629761f, 606.497253f, 10.901563f
 
 // Default nickname
-#define VCCOOP_DEFAULT_NICKNAME			"Nickname123"
+#define SACOOP_DEFAULT_NICKNAME			"Nickname123"
 
 // Default server address
-#define VCCOOP_DEFAULT_SERVER_ADDRESS	"127.0.0.1"
+#define SACOOP_DEFAULT_SERVER_ADDRESS	"127.0.0.1"
 
 // Default server port
-#define VCCOOP_DEFAULT_SERVER_PORT		23546
+#define SACOOP_DEFAULT_SERVER_PORT		23546
 
 // Default server secret
-#define VCCOOP_DEFAULT_SERVER_SECRET	420420420
+#define SACOOP_DEFAULT_SERVER_SECRET	420420420
 
 // Default server config filename
-#define VCCOOP_DEFAULT_SERVER_CONFIG	"server.ini"
+#define SACOOP_DEFAULT_SERVER_CONFIG	"server.ini"
 
 // Default client config filename
-#define VCCOOP_DEFAULT_CLIENT_CONFIG	"client.ini"
+#define SACOOP_DEFAULT_CLIENT_CONFIG	"client.ini"
 
-// VCCOOP Window Title
-#define VCCOOP_WINDOW_TITLE				"Vice City CO-OP"
+// SACOOP Window Title
+#define SACOOP_WINDOW_TITLE				"Vice City CO-OP"
 
 //print game's internal debug messages
-#define VCCOOP_DEBUG_ENGINE
+#define SACOOP_DEBUG_ENGINE
 
 //------------------------------------------------------------------------------------------
 
-#ifndef VCCOOP_SERVER
-#define VCCOOP_NAME						"VC CO-OP"
+#ifndef SACOOP_SERVER
+#define SACOOP_NAME						"VC CO-OP"
 #else
-#define VCCOOP_NAME						"VC CO-OP Server"
+#define SACOOP_NAME						"VC CO-OP Server"
 #endif
 
-#ifndef VCCOOP_SERVER
-#define VCCOOP_VER						"0.02"
+#ifndef SACOOP_SERVER
+#define SACOOP_VER						"0.02"
 #else
-#define VCCOOP_VER						"0.2.0.a"
+#define SACOOP_VER						"0.2.0.a"
 #endif
 #ifndef _DEBUG
-#undef VCCOOP_DEBUG_ENGINE
-#undef VCCOOP_VERBOSE_LOG
+#undef SACOOP_DEBUG_ENGINE
+#undef SACOOP_VERBOSE_LOG
 #endif 
 
 #define DEFAULT_TIME_FORMAT				"%Y%m%d_%H%M%S"

@@ -79,7 +79,7 @@ extern "C" {
 #include "CPool.h"
 #include "CEntity.h"
 
-//vccoop
+//SACOOP
 #include "config.h"
 
 #if !defined(SACOOP_VERBOSE_LOG) && defined(SACOOP_DEBUG)

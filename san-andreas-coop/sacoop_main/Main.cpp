@@ -3,15 +3,15 @@
 
 CCore *core = nullptr;
 
-class VCCoop 
+class SACOOP 
 {
 public:
-	VCCoop() 
+	SACOOP() 
 	{
 		core = new CCore();
 	}
-	~VCCoop() 
+	~SACOOP() 
 	{	
 		delete core;
 	}
-} vcCoop;
+} SACOOP;

@@ -64,7 +64,7 @@ extern "C" {
 #include <vector>
 #include <ctime>
 
-// VCCOOP
+// SACOOP
 #include "../sacoop_main/config.h"
 
 #if !defined(SACOOP_VERBOSE_LOG) && defined(SACOOP_DEBUG)

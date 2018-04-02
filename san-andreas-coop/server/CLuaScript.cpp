@@ -1,6 +1,6 @@
 #include "server.h"
 
-static const struct luaL_Reg vccooplib[] = {
+static const struct luaL_Reg SACOOPlib[] = {
 	{ "print",					&CLuaScript::lua_Log },
 	{ "sleep",					&CLuaScript::lua_Sleep },
 
@@ -646,7 +646,7 @@ void CLuaScript::Call(std::string callback, char *fmt, ...)
 	luaopen_math(m_lState);
 	luaopen_debug(m_lState);
 	lua_getglobal(m_lState, "_G");
-	luaL_setfuncs(m_lState, vccooplib, 0);
+	luaL_setfuncs(m_lState, SACOOPlib, 0);
 	lua_pop(m_lState, 1);
 
 	if (luaL_loadbuffer(m_lState, GetData()->GetData(), GetData()->GetSize() - 1, GetData()->GetName().c_str()) || lua_pcall(m_lState, 0, 0, 0))

@@ -30,7 +30,7 @@
     <ProjectGuid>{3885DEAC-2427-0983-0DE2-1CD7F92290D3}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>VCCOOP</RootNamespace>
+    <RootNamespace>SACOOP</RootNamespace>
     <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
     <ProjectName>SACOOP</ProjectName>
   </PropertyGroup>
@@ -111,7 +111,7 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <OutDir>$(ProjectDir)</OutDir>
     <IntDir>$(PLUGIN_SDK_DIR)\output\obj\examples\$(ProjectName)\Release\</IntDir>
-    <TargetName>vccoop</TargetName>
+    <TargetName>SACOOP</TargetName>
     <TargetExt>.asi</TargetExt>
     <IncludePath>$(IncludePath);$(DIRECTX9_SDK_DIR)\Include;$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_vc;$(ProjectDir)\vendor\lua\include;$(ProjectDir)\vendor\discord-rpc</IncludePath>
     <LibraryPath>$(LibraryPath);$(DIRECTX9_SDK_DIR)\Lib\x86;$(LibraryPath);$(ProjectDir)\vendor\rw;$(ProjectDir)\vendor\discord-rpc;$(SolutionDir)</LibraryPath>
@@ -141,7 +141,7 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <OutDir>$(ProjectDir)</OutDir>
     <IntDir>$(PLUGIN_SDK_DIR)\output\obj\examples\$(ProjectName)\Debug\</IntDir>
-    <TargetName>vccoopd</TargetName>
+    <TargetName>SACOOPd</TargetName>
     <TargetExt>.asi</TargetExt>
     <IncludePath>$(IncludePath);$(DIRECTX9_SDK_DIR)\Include;$(IncludePath);$(PLUGIN_SDK_DIR)\plugin_vc;$(ProjectDir)\vendor\lua\include;$(ProjectDir)\vendor\discord-rpc</IncludePath>
     <LibraryPath>$(LibraryPath);$(DIRECTX9_SDK_DIR)\Lib\x86;$(LibraryPath);$(ProjectDir)\vendor\rw;$(ProjectDir)\vendor\discord-rpc;$(SolutionDir)</LibraryPath>
@@ -210,7 +210,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY /Y /J /C $(OutDir)vccoop.asi $(GTA_VC_DIR)</Command>
+      <Command>XCOPY /Y /J /C $(OutDir)SACOOP.asi $(GTA_VC_DIR)</Command>
       <Message>Copying ASI to GTA VC directory..</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -264,7 +264,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>VCCOOP_DEBUG;_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTAVC;GTAGAME_NAME="Vice City";GTAGAME_ABBR="VC";GTAGAME_ABBRLOW="vc";GTAGAME_PROTAGONISTNAME="Tommy";GTAGAME_CITYNAME="Vice City";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SACOOP_DEBUG;_USING_V110_SDK71_;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;GTAVC;GTAGAME_NAME="Vice City";GTAGAME_ABBR="VC";GTAGAME_ABBRLOW="vc";GTAGAME_PROTAGONISTNAME="Tommy";GTAGAME_CITYNAME="Vice City";_DX9_SDK_INSTALLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)\vendor\detours\;$(PLUGIN_SDK_DIR)\plugin_vc\;$(PLUGIN_SDK_DIR)\plugin_vc\game_vc\;$(PLUGIN_SDK_DIR)\shared\;$(RWD3D9_DIR)\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -283,7 +283,7 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY /Y /J /C $(OutDir)vccoopd.asi $(GTA_VC_DIR)\scripts\</Command>
+      <Command>XCOPY /Y /J /C $(OutDir)SACOOPd.asi $(GTA_VC_DIR)\scripts\</Command>
       <Message>Copying ASI to GTA VC directory..</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>

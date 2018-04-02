@@ -76,7 +76,7 @@ std::string path_to_session_log_file()
 #endif
 
 	static const std::string log_dir = exePath;
-	static const std::string log_file_name = "VCCOOPServer_log.txt";
+	static const std::string log_file_name = "SACOOPServer_log.txt";
 
 	return log_dir + time_stamp(DEFAULT_TIME_FORMAT) + '_' + log_file_name;
 }

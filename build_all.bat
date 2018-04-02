@@ -1,5 +1,5 @@
 @echo off
-TITLE VCCOOP Build Script
+TITLE SACOOP Build Script
 
 SET "outputDir=.\san-andreas-coop\bin"
 SET "log=%outputDir%\build.log"
@@ -23,7 +23,7 @@ echo.
 
 echo Copying binaries..
 copy /Y .\san-andreas-coop\server\Debug\server.exe %outputDir%
-copy /Y .\san-andreas-coop\sacoop_main\vccoopd.asi %outputDir%
+copy /Y .\san-andreas-coop\sacoop_main\SACOOPd.asi %outputDir%
 
 echo Cleaning source files..
 devenv ".\san-andreas-coop\san-andreas-coop.sln" /Clean 1>NUL 2>&1
